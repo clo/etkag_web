@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header_nocache.php");
 if ($_GET['w']=='dok'){
   $title = "Dokumente";
@@ -7,8 +7,8 @@ if ($_GET['w']=='dok'){
 }
 $myDoc = new doc($_GET[dir]);
 ?>
-<h3><?echo $title.": ".$myDoc->formatLinkName($_GET['kom']);?></h3>
-<?
+<h3><?PHPecho $title.": ".$myDoc->formatLinkName($_GET['kom']);?></h3>
+<?PHP
 $base="doc/referenzen/".$spez."/".$_GET['dir'];
 $dir_arr = $myDoc->getFiles($_GET[dir],"^etkag_|pdf$");
 if (!empty($dir_arr)){
@@ -41,7 +41,7 @@ if (!empty($dir_arr)){
 echo "</table>";
 
 ?>
-<p><a class=main href="javascript:history.back(-1);">> zurück <</a></p>
-<?
+<p><a class=main href="javascript:history.back(-1);">> zurï¿½ck <</a></p>
+<?PHP
 include("footer.php");
 ?>

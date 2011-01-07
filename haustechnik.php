@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Haustechnik</h3>
@@ -18,17 +18,17 @@ include("header.php");
   </td>
 </tr>
 <tr><td colspan=2>
-Für Haustechnikfirmen  fabrizieren wir Elektrosteuerungen für Heizungs-, 
-Lüftungs- und  Kälteanlagen. Den Siemens Building Standart für Heizungen 
-und Lüftungen kennen wir bestens.<br>
-Wir können auch Lösungen mit einer SPS Steuerung projektieren und ausführen, 
-inklusive Erstellen von Elektroschema und SPS Software. Bei grösseren Objekten 
-macht es Sinn die verschiedenen Steuerungen inklusive der Gebäudeautomation mit 
-einer SPS-Steuerung auszuführen.<br>
-Damit sich die Haustechniker nicht um den Elektroteil kümmern müssen, sind wir 
+Fï¿½r Haustechnikfirmen  fabrizieren wir Elektrosteuerungen fï¿½r Heizungs-, 
+Lï¿½ftungs- und  Kï¿½lteanlagen. Den Siemens Building Standart fï¿½r Heizungen 
+und Lï¿½ftungen kennen wir bestens.<br>
+Wir kï¿½nnen auch Lï¿½sungen mit einer SPS Steuerung projektieren und ausfï¿½hren, 
+inklusive Erstellen von Elektroschema und SPS Software. Bei grï¿½sseren Objekten 
+macht es Sinn die verschiedenen Steuerungen inklusive der Gebï¿½udeautomation mit 
+einer SPS-Steuerung auszufï¿½hren.<br>
+Damit sich die Haustechniker nicht um den Elektroteil kï¿½mmern mï¿½ssen, sind wir 
 sicher der richtige Partner.
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Haustechnik") ) {
   echo "<a class=main href='index.php?site=referenzen&dir=Haustechnik&pos=".$_GET['pos']."' target='_top'>> Referenzen <</a>";
@@ -53,6 +53,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Haustechnik") ) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

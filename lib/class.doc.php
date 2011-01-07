@@ -1,4 +1,4 @@
-<?
+<?PHP
 class doc {
   var $path = "";
   var $debug = false;
@@ -379,10 +379,10 @@ function getFiles($dir=null,$include=".*"){
   	
   	if ($umlaut){
   	  $link = $this->insertUmlaut($link);
-  	  //$link = str_replace("ae","ä",$link);
-  	  //$link = str_replace("ue","ü",$link);
-  	  //$link = str_replace("eü","eue",$link);
-  	  //$link = str_replace("oe","ö",$link);
+  	  //$link = str_replace("ae","ï¿½",$link);
+  	  //$link = str_replace("ue","ï¿½",$link);
+  	  //$link = str_replace("eï¿½","eue",$link);
+  	  //$link = str_replace("oe","ï¿½",$link);
   	}
   	
 
@@ -406,19 +406,19 @@ function getFiles($dir=null,$include=".*"){
   }
   
   function insertUmlaut($link){
-    $link = str_replace("ae","ä",$link);
-    $link = str_replace("hä","hae",$link);
-  	$link = str_replace("ue","ü",$link);
-  	$link = str_replace("eü","eue",$link);
-  	$link = str_replace("oe","ö",$link);
+    $link = str_replace("ae","ï¿½",$link);
+    $link = str_replace("hï¿½","hae",$link);
+  	$link = str_replace("ue","ï¿½",$link);
+  	$link = str_replace("eï¿½","eue",$link);
+  	$link = str_replace("oe","ï¿½",$link);
   	return $link;
   }
   
   function replaceUmlaut($link){
-    $link = str_replace("ä","ae",$link);
-  	$link = str_replace("ü","ue",$link);
-  	$link = str_replace("eü","eue",$link);
-  	$link = str_replace("ö","oe",$link);
+    $link = str_replace("ï¿½","ae",$link);
+  	$link = str_replace("ï¿½","ue",$link);
+  	$link = str_replace("eï¿½","eue",$link);
+  	$link = str_replace("ï¿½","oe",$link);
   	$link = str_replace(" ","_",$link);
   	return $link;
   }

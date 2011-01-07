@@ -5,7 +5,7 @@
 <LINK href="./css/josi.css" media=screen rel=stylesheet type=text/css>
 </head>
 <body>
-<?
+<?PHP
 //echo ">>>>Hallo".$men."-".$open."-"-$rubrik."<br>";
 //echo "Rubrik: $_REQUEST[rubrik]<br>";
 //echo "Menu: $_REQUEST[men]<br>";

@@ -1,4 +1,4 @@
-<?
+<?PHP
 class session{
   var $_id=null;
   var $_validated=false;

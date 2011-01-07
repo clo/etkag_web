@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Infrastruktur<h3>
@@ -19,16 +19,16 @@ include("header.php");
 </tr>
 <tr><td colspan=3>
 <br>
-Unsere Werkstatt ist mit einem kompletten Maschinenpark für den Tableaubau eingerichtet. Die
-Bearbeitung von Alu-Profilen, Kupfer  und Kabelkanälen erfolgen auf unseren Stanzmaschinen
-spanfrei. PVC Abdeckungen können wir auf der PVC-Maschine zuschneiden und bearbeiten.
-Durch unsere mobilen Montage-/ Verdrahtungswagen und genügender Werkstattfläche sind wir
+Unsere Werkstatt ist mit einem kompletten Maschinenpark fï¿½r den Tableaubau eingerichtet. Die
+Bearbeitung von Alu-Profilen, Kupfer  und Kabelkanï¿½len erfolgen auf unseren Stanzmaschinen
+spanfrei. PVC Abdeckungen kï¿½nnen wir auf der PVC-Maschine zuschneiden und bearbeiten.
+Durch unsere mobilen Montage-/ Verdrahtungswagen und genï¿½gender Werkstattflï¿½che sind wir
 auch bei grossem Auftragsvolumen flexibel eingerichtet. Die genau definierte und hinterlegte
 Werkzeughaltung garantiert ein speditives arbeiten.
-Ein kleingehaltenes, überwachtes Lager für die gängigsten Tableauartikel haben wir  übersichtlich
-in genügender Lagerfläche eingelagert.
-Alle unsere Arbeitsprozesse, inklusive Administrationsaufwand, können wir mit einer eigens auf
-unseren Betrieb abgestimmten Software einfach abwickeln und überwachen. Alle Kontakte,
+Ein kleingehaltenes, ï¿½berwachtes Lager fï¿½r die gï¿½ngigsten Tableauartikel haben wir  ï¿½bersichtlich
+in genï¿½gender Lagerflï¿½che eingelagert.
+Alle unsere Arbeitsprozesse, inklusive Administrationsaufwand, kï¿½nnen wir mit einer eigens auf
+unseren Betrieb abgestimmten Software einfach abwickeln und ï¿½berwachen. Alle Kontakte,
 Artikel, Dienstleistungen, Arbeitsprozesse und Arbeitspapiere sind in der Software mit den
 wichtigsten Informationen hinterlegt.
 <br><br>
@@ -50,13 +50,13 @@ wichtigsten Informationen hinterlegt.
 <tr>
   <td>
     <img src="fotos/buero.jpg" border=0>
-    <div class=pictext_left>Büro</div>
+    <div class=pictext_left>Bï¿½ro</div>
   </td>
   <td>
     <div class=pictext_left>Unsere Werkstatt:<br><br>
-    - Werkstattfläche 290 m2<br>
-    - Lagerfläche 220 m2<br>
-    - Büro 50 m2<br>
+    - Werkstattflï¿½che 290 m2<br>
+    - Lagerflï¿½che 220 m2<br>
+    - Bï¿½ro 50 m2<br>
     - Umgebung 150 m2
     </div>
   </td>
@@ -81,6 +81,6 @@ wichtigsten Informationen hinterlegt.
 </tr>
 </table>
 <p>
-<?
+<?PHP
 include("footer.php");
 ?>

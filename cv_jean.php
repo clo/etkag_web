@@ -1,7 +1,7 @@
-<?
+<?PHP
 include("header.php");
 ?>
-<h3>VR-Präsident</h3>
+<h3>VR-Prï¿½sident</h3>
 
 <div align='left'>
 <table border=0 class=cv>
@@ -19,7 +19,7 @@ include("header.php");
 </table>
 </div>
 <p>
-<?
+<?PHP
 $myDoc = new doc();
 $cv = "./doc/cv/Lebenslauf_Kalbermatter_Jean.pdf";
 if (is_file($cv)){
@@ -28,6 +28,6 @@ if (is_file($cv)){
 }
 ?>
 </p>
-<?
+<?PHP
 include("footer.php");
 ?>

@@ -1,4 +1,4 @@
-<?
+<?PHP
 class singleton {
   function &getInstance ($class){
     static $instances = array();

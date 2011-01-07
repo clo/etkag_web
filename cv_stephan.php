@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 
@@ -20,7 +20,7 @@ include("header.php");
 </table>
 </div>
 <p>
-<?
+<?PHP
 $myDoc = new doc();
 $cv = "./doc/cv/Lebenslauf_Zenklusen_Stephan.pdf";
 if (is_file($cv)){
@@ -29,6 +29,6 @@ if (is_file($cv)){
 }
 ?>
 </p>
-<?
+<?PHP
 include("footer.php");
 ?>

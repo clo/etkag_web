@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("./header.php");
 ?>
 <h3>Automation</h3>
@@ -18,29 +18,29 @@ include("./header.php");
   </td>
 </tr>
 <tr><td colspan=2>
-<b>Gebäudeautomation</b><br>
+<b>Gebï¿½udeautomation</b><br>
 Die Anforderungen an haustechnische Anlagen sind in den letzten Jahren stetig
 gestiegen. Die Kundschaft verlangt immer anspruchsvollere Systeme, die
 Energie- und Kosteneinsparungen sowie Luxus und Bedienerfreundlichkeit
-garantieren. Um diese Ansprüche zu erfüllen, werden Überwachungs- Steuer-
-Regel und weitere Einrichtungen im Gebäude gewerbsübergreifend mit einander
-vernetzt und automatisiert. Intelligente Gebäudetechnik wird bei den
-Investitionskosten oft viel zu hoch eingeschätzt. Ebenfalls wird das Potential
-langfristiger Einsparungen nicht berücksichtigt.<br>
+garantieren. Um diese Ansprï¿½che zu erfï¿½llen, werden ï¿½berwachungs- Steuer-
+Regel und weitere Einrichtungen im Gebï¿½ude gewerbsï¿½bergreifend mit einander
+vernetzt und automatisiert. Intelligente Gebï¿½udetechnik wird bei den
+Investitionskosten oft viel zu hoch eingeschï¿½tzt. Ebenfalls wird das Potential
+langfristiger Einsparungen nicht berï¿½cksichtigt.<br>
 Mit Hilfe unserer Spezialisten, welche auf dem Haustechnik Sektor ein breites
-Wissen aufgebaut haben, können wir Ihnen alle erwünschten
+Wissen aufgebaut haben, kï¿½nnen wir Ihnen alle erwï¿½nschten
 Automationsvarianten anbieten und Ihnen die Vor- und Nachteile einer solchen
-Lösung darlegen. Suchen Sie das Gespräch mit unseren Spezialisten bevor Sie
-sich gegen eine intelligente Gebäudetechnik entscheiden!<br><br>
+Lï¿½sung darlegen. Suchen Sie das Gesprï¿½ch mit unseren Spezialisten bevor Sie
+sich gegen eine intelligente Gebï¿½udetechnik entscheiden!<br><br>
 <b>Prozessautomation</b><br>
 Durch die andauernd steigenden Unterhalts- sowie Personalkosten
-müssen bei fast allen Prozessen Optimierungen eingegliedert
+mï¿½ssen bei fast allen Prozessen Optimierungen eingegliedert
 werden. Zeigen Sie uns Ihre Prozessaufgaben und lassen Sie uns
-diese in Steuerungs- und MSRL Konzepte übersetzen. Ebenfalls
-erstellen wir sämtliche Ausführungsunterlagen und
+diese in Steuerungs- und MSRL Konzepte ï¿½bersetzen. Ebenfalls
+erstellen wir sï¿½mtliche Ausfï¿½hrungsunterlagen und
 Elektroschemas.
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Automation")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Automation&pos=".$_GET['post']."' target='_top'>Referenzen</a>";
@@ -61,6 +61,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Automation")) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

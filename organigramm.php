@@ -1,9 +1,9 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Organigramm</h3>
 <div align='left'>
-<?
+<?PHP
 $dir="doc/organigramm";
 $myDoc = new doc($dir);
 $info_arr = $myDoc->getInfoText($dir,null,'MULTIPLE');

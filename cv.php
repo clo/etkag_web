@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 $dir="doc/organigramm";
 $myDoc = new doc($dir);
@@ -20,7 +20,7 @@ foreach($val as $k => $v){
 
 $pic = $myDoc->getFileTypeSymbol('pdf');
 echo "<tr><td colspan='2'>$pic&nbsp;<a class='main' href='".$val['lebenslauf']."' target='_new'>Lebenslauf</a></td></tr>";
-echo "<tr><td colspan='2'><a class='main' href='' onClick='javascript:history.back();'>>zurück<</a></td></tr>";
+echo "<tr><td colspan='2'><a class='main' href='' onClick='javascript:history.back();'>>zurï¿½ck<</a></td></tr>";
 echo "</table>";
 echo "</div>";
 

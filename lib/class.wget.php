@@ -1,4 +1,4 @@
-<?
+<?PHP
 /*
  * wget -xr -A "*JPG,*jpg" -R "etkag_*"  http://www.etkag.ch/doc/
  */

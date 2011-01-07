@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 if ($_GET['w']=='dok'){
   $title = "Dokumente";
@@ -9,7 +9,7 @@ $base="./doc/anlass";
 $myDoc = new doc($base);
 ?>
 <h3>
-<?
+<?PHP
 if (isset($_GET['dir'])){
   echo $myDoc->getDate($_GET['dir']).": "; 
 }else{
@@ -18,7 +18,7 @@ if (isset($_GET['dir'])){
 echo $myDoc->formatLinkName($_GET['dir'],true,true);
 ?>
 </h3>
-<?
+<?PHP
 if (!isset($_GET[dir])){
   $dir_arr = $myDoc->getFolders($base,false);
   $dir_arr = $myDoc->sortArr($dir_arr);
@@ -127,7 +127,7 @@ if (!isset($_GET[dir])){
 }
 
 ?>
-<p><a class=main href="javascript:history.back(-1);">> zurück <</a></p>
-<?
+<p><a class=main href="javascript:history.back(-1);">> zurï¿½ck <</a></p>
+<?PHP
 include("footer.php");
 ?>

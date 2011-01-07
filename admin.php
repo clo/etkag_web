@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 
 echo "<h3>Admin</h3>";

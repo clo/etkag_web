@@ -1,4 +1,4 @@
-<?
+<?PHP
 if (isset($_GET[site])){
 	$rub = strtolower($_REQUEST['site']);
 	$rub = ucfirst($rub);

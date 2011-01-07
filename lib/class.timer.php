@@ -1,4 +1,4 @@
-<?
+<?PHP
 class timer {
 
   private $_starttime;

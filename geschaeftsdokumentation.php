@@ -1,8 +1,8 @@
-<?
+<?PHP
 include("header.php");
 ?>
-<h3>Geschäftsdokumentation</h3>
-<?
+<h3>Geschï¿½ftsdokumentation</h3>
+<?PHP
 $base="doc/geschaeftsdokumentation";
 $myDoc = new doc($base);
 $dir_arr = $myDoc->getFiles();
@@ -27,7 +27,7 @@ if (!empty($dir_arr)){
 echo "</table>";
 
 ?>
-<p><a class=main href="javascript:history.back(-1);">> zurück <</a></p>
-<?
+<p><a class=main href="javascript:history.back(-1);">> zurï¿½ck <</a></p>
+<?PHP
 include("footer.php");
 ?>

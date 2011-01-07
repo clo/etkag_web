@@ -1,4 +1,4 @@
-<?
+<?PHP
 class menu {
 	var $menu = array();
 	var $css = array();

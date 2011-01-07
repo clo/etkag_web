@@ -1,4 +1,4 @@
-<?
+<?PHP
 $top_height = 91;
 $middle_height = '100%';
 $bottom_height=10;

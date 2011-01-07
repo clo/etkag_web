@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header_nocache.php");
 ?>
 <table class='home'>
@@ -8,21 +8,21 @@ include("header_nocache.php");
 <p class='home'>Der zweitbeste Moment uns herauszufordern ist jetzt.<br>
 Der beste Moment ist vorbei.<br>
 Wir freuen uns auf Ihre Herausforderung.<br><br></p>
-<?
+<?PHP
 echo "<img src='img.php?file=./fotos/mitarbeiter_lustig_500px.jpg&picWidth=300' border=0>";
 ?>
 <!--<img src="./fotos/mitarbeiter_lustig_500px.jpg">-->
 <p class='pictext'>Mitarbeiter ETK AG</p>
 <!--<a class=main href="./index.php?site=iso">> ISO-Zertifizierung <</a>-->
 </td><td width='300'>
-<?
+<?PHP
 $dir="doc/aktuelle_objekte";
 $myDoc = new doc($dir);
 $info_arr = $myDoc->getInfoText($dir,null,'MULTIPLE');
 //$myDoc->dump($info_arr);
 if (!empty($info_arr)){
   echo "<h4>Atkuelle Objekte</h4>";
-  echo "Die ETK AG dankt Ihnen für das Vertrauen.<br><br>";
+  echo "Die ETK AG dankt Ihnen fï¿½r das Vertrauen.<br><br>";
   echo "<table class='topnews'>";
   foreach($info_arr as $k => $val){
   	if (compDate($info_arr[$k]['endtermin']) == 1 || compDate($info_arr[$k]['endtermin']) == 0){
@@ -66,6 +66,6 @@ if (!empty($info_arr)){
 ?>
 </td></tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Elektrobrennstempel</h3>
@@ -20,23 +20,23 @@ include("header.php");
 <tr><td colspan=3>
 Der elektrische Brennstempel eignet sich zur Reklame oder
 Eigentumsbezeichnung auf Holz, Kunststoff und Leder. Er ist in
-wenigen Minuten betriebsbereit und ermöglicht Ihnen fortlaufendes,
+wenigen Minuten betriebsbereit und ermï¿½glicht Ihnen fortlaufendes,
 zeitsparendes Brennen ohne Unterbruch.
 Der Brennstempel muss ca.5-10Min. an eine 230V Steckdose
-angeschlossen werden und ist dann für fortlaufendes Brennen
+angeschlossen werden und ist dann fï¿½r fortlaufendes Brennen
 bereit. Der Brennstempel hat kein Thermostat und muss deshalb
 sobald das Brennen beendigt ist, dringend  vom Netzanschluss
 getrennt werden.<br><br>
-<b>Ausführung</b><br>
-<li>Stempel mit verschieden grossen Brennflächen
+<b>Ausfï¿½hrung</b><br>
+<li>Stempel mit verschieden grossen Brennflï¿½chen
 <li>VSM Normschrift 1reihig
 <li>VSM Normschrift mehrzeilig gegen Mehrpreis
-<li>Spezielle Schriftzüge oder Signete gegen Mehrpreis
-<li>Mehrere Schriftgrössen möglich (Seitencliche)
+<li>Spezielle Schriftzï¿½ge oder Signete gegen Mehrpreis
+<li>Mehrere Schriftgrï¿½ssen mï¿½glich (Seitencliche)
 <li>Anfertigung mit auswechselbaren Zahlen / Buchstaben
-<li>Ausführung für in Bohrfutter
+<li>Ausfï¿½hrung fï¿½r in Bohrfutter
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 $preisliste = './doc/preislisten/Brennstempel.pdf';
 if(is_file($preisliste)){
@@ -45,7 +45,7 @@ if(is_file($preisliste)){
   echo "<br><br>";
 }
 ?>
-<?
+<?PHP
 
 if ($myDoc->docAvailable("./doc/referenzen/Elektrobrennstempel")) {
   echo "<a class=main href='index.php?site=referenzen&dir=elektrobrennstempel&pos=$pos' target='_top'>> Referenzen <</a>";
@@ -57,28 +57,28 @@ if ($myDoc->docAvailable("./doc/referenzen/Elektrobrennstempel")) {
 </td></tr>
 <tr>
   <td>
-    <?
+    <?PHP
       $imgsrc = $myDoc->getPictureSrc("fotos/gross/brennstempel4.jpg"); 
 	?>
-    <img src="fotos/brennstempel4.jpg" border=0><? echo $imgsrc; ?>
+    <img src="fotos/brennstempel4.jpg" border=0><?PHP echo $imgsrc; ?>
     <div class=pictext_left>Stempel mit Seitencliche<br>&nbsp;</div>
   </td>
   <td>
-    <?
+    <?PHP
       $imgsrc = $myDoc->getPictureSrc("fotos/gross/brennstempel5.jpg"); 
 	?>
-    <img src="fotos/brennstempel5.jpg" border=0><? echo $imgsrc; ?>
+    <img src="fotos/brennstempel5.jpg" border=0><?PHP echo $imgsrc; ?>
    <div class=pictext_left>Schwalbenschwanz,<br>auswechselbar</div>
   </td>
   <td>
-    <?
+    <?PHP
       $imgsrc = $myDoc->getPictureSrc("fotos/gross/brennstempel6.jpg"); 
 	?>
-    <img src="fotos/brennstempel6.jpg" border=0><? echo $imgsrc; ?>
+    <img src="fotos/brennstempel6.jpg" border=0><?PHP echo $imgsrc; ?>
     <div class=pictext_left>Spezialschriften<br>&nbsp;</div> 
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

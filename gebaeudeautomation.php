@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Automation</h3>
@@ -18,15 +18,15 @@ include("header.php");
   </td>
 </tr>
 <tr><td colspan=2>
-Die technisch hochstehende  Gebäudeautomation kommt auch im
+Die technisch hochstehende  Gebï¿½udeautomation kommt auch im
 Elektro-Tableaubau zum tragen. Gerade bei umfangreicheren Bauten
 ist eine SPS-Steuerung nicht mehr wegzudenken.
-Aber auch im gewöhnlichen Wohnungsbau kann mit einer Steuerung
-vieles einfacher gesteuert und überwacht werden.
+Aber auch im gewï¿½hnlichen Wohnungsbau kann mit einer Steuerung
+vieles einfacher gesteuert und ï¿½berwacht werden.
 Wir haben die Erfahrung im Elektro-Tableaubau mit den verschiedensten
 SPS- oder EIB-Steuerungen.
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Gebaeudeautomation")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Gebaeudeautomation&pos=".$_GET['pos']."' target='_top'>>Referenzen<</a>";
@@ -51,6 +51,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Gebaeudeautomation")) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

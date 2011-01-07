@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Anfahrt</h3>
@@ -6,6 +6,6 @@ include("header.php");
 ETK AG befindet sich in der Furkastrasse 116 in 3904 Naters.<br><br>
 <img src="./img/anfahrt.gif" border=0>
 </p>
-<?
+<?PHP
 include("footer.php");
 ?>

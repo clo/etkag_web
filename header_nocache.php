@@ -1,13 +1,13 @@
 <html>
 <head>
-<title><?echo $pagetitle?></title>
+<title><?PHPecho $pagetitle?></title>
 <!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">-->
 <meta http-equiv="expires" content="0">
 
 <LINK href="./css/etkag.css" media=screen rel=stylesheet type=text/css>
 </head>
 <body bgcolor="#FFFFFF">
-<?
+<?PHP
 include_once ("./lib/menu.cfg.php");
 include_once ("./cfg/lang.inc.php");
 include_once ("./lib/lib.inc.php");

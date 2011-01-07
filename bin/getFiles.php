@@ -1,4 +1,4 @@
-<?
+<?PHP
 error_reporting(E_ALL);
 require_once 'Net/FTP.php';
 

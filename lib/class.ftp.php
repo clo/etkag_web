@@ -1,4 +1,4 @@
-<?
+<?PHP
 class ftp {
   var $debug = true;
   var $host = "etkag.ch";

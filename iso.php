@@ -1,10 +1,10 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>ISO-Zertifizierung</h3>
 <p>
 Wir sind zertifiziert seit 2002.<br><br>
-<?
+<?PHP
 $path = "./doc/iso";
 $myDoc = new doc($path);
 if($myDoc->docAvailable()){
@@ -21,6 +21,6 @@ if($myDoc->docAvailable()){
 }
 ?>
 </p>
-<?
+<?PHP
 include("footer.php");
 ?>

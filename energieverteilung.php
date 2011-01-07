@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Energieverteilungen</h3>
@@ -20,17 +20,17 @@ include("header.php");
 <tr><td	colspan=2>
 Wir bauen Niederspannungsverteilungen bis 700V mit
 NH-Sicherungstrennleisten oder NS-Lasttrennschalter
-für Trafostationen <br>oder für sonstige grössere
+fï¿½r Trafostationen <br>oder fï¿½r sonstige grï¿½ssere
 Verteilungen bis 2500A Nennstrom und 85kA
 Kurzschlussstrom.
-Auf Wunsch bauen wir auch typgeprüfte Anlagen.<br>
-Für die Kupferbearbeitung sind wir mit unserer
+Auf Wunsch bauen wir auch typgeprï¿½fte Anlagen.<br>
+Fï¿½r die Kupferbearbeitung sind wir mit unserer
 Stanzmaschine und Biegemaschine sehr gut
 eingerichtet. Kupferprofile bis zu einem Querschnitt
-von  100x10mm können wir ohne Probleme
+von  100x10mm kï¿½nnen wir ohne Probleme
 bearbeiten.
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Energieverteilung")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Energieverteilung&pos=".$_GET['pos']."' target='_top'>> Referenzen <</a>";
@@ -55,6 +55,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Energieverteilung")) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Administration</h3>
@@ -10,7 +10,7 @@ include("header.php");
 <tr><td width=150 class=cvtitle>Geburtstag:</td><td width=200>26.01.1978</td></tr>
 <tr><td width=150 class=cvtitle>Zivilstand:</td><td width=200>verheiratet</td></tr>
 <tr><td width=150 class=cvtitle>Kinder:</td><td width=200>keine</td></tr>
-<tr><td width=150 class=cvtitle>Ausbildung:</td><td width=200>Kaufmännische Angestellte</td></tr>
+<tr><td width=150 class=cvtitle>Ausbildung:</td><td width=200>Kaufmï¿½nnische Angestellte</td></tr>
 <tr><td width=150 class=cvtitle>Arbeitsbeginn:</td><td width=200>19.07.2005</td></tr>
 <!--<tr><td width=150 class=cvtitle>AHV-Nr.:</td><td width=200>527.78.526.115</td></tr>-->
 <tr><td width=150 class=cvtitle>Telefon:</td><td width=200>027 923 23 78</td></tr>
@@ -19,7 +19,7 @@ include("header.php");
 </table>
 </div>
 <p>
-<?
+<?PHP
 $myDoc = new doc();
 $cv = "./doc/cv/Lebenslauf_Kalbermatter_Corinne.pdf";
 if (is_file($cv)){
@@ -28,6 +28,6 @@ if (is_file($cv)){
 }
 ?>
 </p>
-<?
+<?PHP
 include("footer.php");
 ?>

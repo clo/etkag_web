@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Industrie</h3>
@@ -18,22 +18,22 @@ include("header.php");
   </td>
 </tr>
 <tr><td colspan=2>
-Wir haben die Erfahrung für verschiedene Elektroanlagen in der Industrie. 
+Wir haben die Erfahrung fï¿½r verschiedene Elektroanlagen in der Industrie. 
 Von der  Energieverteilungen bis zur Elektrosteuerung, vom Steckdosenkasten bis 
 zum Bedienkasten. Maschinensteuerungen, Ablaufsteuerungen, besondere Antriebe  
-oder  ganze Prozessabläufe,  wir können die dazu passende Elektrosteuerung 
+oder  ganze Prozessablï¿½ufe,  wir kï¿½nnen die dazu passende Elektrosteuerung 
 planen oder anhand Ihrem Schema das passende Elektro-Tableau fabrizieren.<br>
 Von der Aufnahme des Pflichtenheftes, Erstellung des Elektroschemas, Produktion 
 vom Elektrotableau, Erstellung der SPS Software und Inbetriebnahme vor Ort, 
-wir bieten technisch, fach- und zeitgerechte Lösungen preiswert an. 
-Für den Service und Unterhalt an Elektroanlagen sind wir im Oberwallis natürlich 
+wir bieten technisch, fach- und zeitgerechte Lï¿½sungen preiswert an. 
+Fï¿½r den Service und Unterhalt an Elektroanlagen sind wir im Oberwallis natï¿½rlich 
 nahe um prompte, preiswerte Hilfe zu leisten.<br>
-In der Industrie sind wir stark für die Lonza und die DSM tätig, wo wir auch 
-den gewünschten Standart bestens kennen. Aber auch für Maschinenbetriebe, 
-Kraftwerke, ARA’s, Regenklärbecken, Metzgereien, Bauernhöfe usw. fabrizieren 
+In der Industrie sind wir stark fï¿½r die Lonza und die DSM tï¿½tig, wo wir auch 
+den gewï¿½nschten Standart bestens kennen. Aber auch fï¿½r Maschinenbetriebe, 
+Kraftwerke, ARAï¿½s, Regenklï¿½rbecken, Metzgereien, Bauernhï¿½fe usw. fabrizieren 
 wir Elektro-Tableaus.
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Industrie")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Industrie&pos=".$_GET['pos']."' target='_top'>>Referenzen<</a>";
@@ -58,6 +58,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Industrie")) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

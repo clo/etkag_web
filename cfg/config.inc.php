@@ -1,4 +1,4 @@
-<?
+<?PHP
 $dirChangePictures = "./fotos/wechselnde_bilder";
 $picture_top['default'] = "./fotos/werkstatt.jpg";
 $picture_top['cv_frank'] = "./fotos/frank.jpg";

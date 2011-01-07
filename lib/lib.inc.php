@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("../cfg/error.inc.php");
 
 function constructVar(&$arr,$excludevar){
@@ -43,7 +43,7 @@ function getRandomNr($from,$to){
 
 function replaceUmlaut($word){
 	$word=str_replace("ae","&auml;",$word);
-	$word=str_replace("ue","ü",$word);
+	$word=str_replace("ue","ï¿½",$word);
 	return $word;
 }
 

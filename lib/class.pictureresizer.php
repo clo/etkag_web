@@ -1,4 +1,4 @@
-<?
+<?PHP
 class pictureresizer {
 
   var $doc;	

@@ -1,4 +1,4 @@
-<?
+<?PHP
 
 $file = $_GET[file];
 if (isset($_GET['picWidth'])) { 

@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Strassentunnel</h3>
@@ -19,14 +19,14 @@ include("header.php");
 </tr>
 <tr><td colspan=2>
 Im Strassentunnelbau ist ein hoher Sicherheitsstandart gefordert, den wir im
-Elektroteil bestens kennen. Wir haben Erfahrung für die Herstellung der
-Elektrotableaus für Energieverteilung, Beleuchtungssteuerung,
+Elektroteil bestens kennen. Wir haben Erfahrung fï¿½r die Herstellung der
+Elektrotableaus fï¿½r Energieverteilung, Beleuchtungssteuerung,
 Ventilationssteuerung mit CO und ST Messung und Notausgangsignalisation.
-Für den Automationsbereich sind wir mit einem Arbeitsplatz eingerichtet und
-haben für umfangreichere Aufträge gute Beziehungen zu grossen
+Fï¿½r den Automationsbereich sind wir mit einem Arbeitsplatz eingerichtet und
+haben fï¿½r umfangreichere Auftrï¿½ge gute Beziehungen zu grossen
 Automationsfirmen.
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Strassentunnel")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Strassentunnel&pos=".$_GET['pos']."' target='_top'>> Referenzen <</a>";
@@ -65,6 +65,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Strassentunnel")) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

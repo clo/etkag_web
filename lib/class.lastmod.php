@@ -1,4 +1,4 @@
-<?
+<?PHP
 
 class lastmod {
   var $date = 0;
@@ -29,7 +29,7 @@ class lastmod {
           if(is_dir($path."/".$file)) {
             getLastMod($this->path."/".$file);
           } else {
-            if(preg_match("/$suche/",$file)){ // für suche
+            if(preg_match("/$suche/",$file)){ // fï¿½r suche
               $newdate = filemtime($path."/".$file);
               if ($newdate > $date) {
                 $date = $newdate;

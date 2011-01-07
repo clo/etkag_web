@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Schaltanlagen Monteur</h3>
@@ -19,7 +19,7 @@ include("header.php");
 </table>
 </div>
 <p>
-<?
+<?PHP
 $myDoc = new doc();
 $cv = "./doc/cv/Lebenslauf_DAndrea_Renato.pdf";
 if (is_file($cv)){
@@ -28,6 +28,6 @@ if (is_file($cv)){
 }
 ?>
 </p>
-<?
+<?PHP
 include("footer.php");
 ?>

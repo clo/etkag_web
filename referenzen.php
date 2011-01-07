@@ -1,8 +1,8 @@
-<?
+<?PHP
 include("header.php");
 ?>
-<h3>Referenzen <? echo replaceUmlaut(ucwords($_GET['dir'])); ?> </h3>
-<?
+<h3>Referenzen <?PHP echo replaceUmlaut(ucwords($_GET['dir'])); ?> </h3>
+<?PHP
 $base="doc/referenzen/".$_GET['dir'];
 $myDoc = new doc($base);
 $dir_arr = $myDoc->getFolders();
@@ -53,6 +53,6 @@ if (!empty($dir_arr)){
 }
 echo "</table>";
 ?>
-<?
+<?PHP
 include("footer.php");
 ?>

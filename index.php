@@ -1,17 +1,17 @@
-<?
+<?PHP
 $id=session_start();
 ?>
 <html>
 <head>
-<title><?echo $pagetitle?></title>
+<title><?PHPecho $pagetitle?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta name="description" content="ETK AG Elektro-Tableau Kalbermatter AG Schaltanlagen und Automation Naters">
-<meta name="keywords" content="ETK AG Elekrto-Tableau Kalbermatter AG Schaltanlagen Automation Elektro Kasten Naters Automation Gebäudeautomation Brennstempel Energieverteilung Hausverteilung Verteilung Haustechnik Industrie Strassentunnel Spezialanlagen Baufirma Musterdisposition Elektrobrennstempel Wallis Schweiz">
+<meta name="keywords" content="ETK AG Elekrto-Tableau Kalbermatter AG Schaltanlagen Automation Elektro Kasten Naters Automation Gebï¿½udeautomation Brennstempel Energieverteilung Hausverteilung Verteilung Haustechnik Industrie Strassentunnel Spezialanlagen Baufirma Musterdisposition Elektrobrennstempel Wallis Schweiz">
 
 <LINK href="./css/etkag.css" media=screen rel=stylesheet type=text/css>
 </head>
 <body bgcolor="#DDDDDD">
-<?
+<?PHP
 include_once ("./lib/menu.cfg.php");
 include_once ("./cfg/lang.inc.php");
 include_once ("./lib/lib.inc.php");

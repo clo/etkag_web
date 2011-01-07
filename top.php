@@ -4,7 +4,7 @@
 <img src='img/iso9001_50px.jpg' border=0 title='ISO Zertifizierung 9001'>
 <img src='img/iqnet_50px.jpg' border=0 title='IQNet'>
 <img src="img/spacer.gif" height="1" width="223">
-<?
+<?PHP
 if (!empty($picture_top[$_GET['site']]) && is_file($picture_top[$_GET['site']])){
   $imgpath = $picture_top[$_GET['site']];
 }else{

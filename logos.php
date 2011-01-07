@@ -1,9 +1,9 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Logos</h3>
 <p>
-<?
+<?PHP
 $path = "./doc/logos";
 $myDoc = new doc($path);
 if($myDoc->docAvailable()){
@@ -20,6 +20,6 @@ if($myDoc->docAvailable()){
 }
 ?>
 </p>
-<?
+<?PHP
 include("footer.php");
 ?>

@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Spezialanlagen</h3>
@@ -18,21 +18,21 @@ include("header.php");
   </td>
 </tr>
 <tr><td colspan=2>
-Mit unserer Infrastruktur im Elektrotableaubau und langjähriger
-Erfahrung können wir für verschiedenste Anwendungen eine Lösung
-finden. Wir gehen auf spezielle, individuelle Wünsche ein und sind offen
-für jede weitere Tätigkeit.<br><br>
-Einige Beispiele für diverse Spezialanlagen :
-<li>Edelstahlkästen
+Mit unserer Infrastruktur im Elektrotableaubau und langjï¿½hriger
+Erfahrung kï¿½nnen wir fï¿½r verschiedenste Anwendungen eine Lï¿½sung
+finden. Wir gehen auf spezielle, individuelle Wï¿½nsche ein und sind offen
+fï¿½r jede weitere Tï¿½tigkeit.<br><br>
+Einige Beispiele fï¿½r diverse Spezialanlagen :
+<li>Edelstahlkï¿½sten
 <li>Baustellenstromverteiler
-<li>Campingverteilkästen
-<li>Prüftableau
+<li>Campingverteilkï¿½sten
+<li>Prï¿½ftableau
 <li>Schalterplatinen
 <li>Steuerschrank Pneumatik
 <li>Gasmischkasten
 <li>USV, Kompensation, Netzfilter
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Spezialanlagen")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Spezialanlagen&pos=".$_GET['pos']."' target='_top'>> Referenzen <</a>";
@@ -58,6 +58,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Spezialanlagen")) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

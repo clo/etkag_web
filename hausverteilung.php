@@ -1,4 +1,4 @@
-<?
+<?PHP
 include("header.php");
 ?>
 <h3>Hausverteilungen</h3>
@@ -18,20 +18,20 @@ include("header.php");
   </td>
 </tr>
 <tr><td colspan=2>
-Für die Elektroinstallationsgeschäfte fabrizieren wir Hausverteilungen, vom
+Fï¿½r die Elektroinstallationsgeschï¿½fte fabrizieren wir Hausverteilungen, vom
 Hausanschlusskasten bis zum Wohnungsverteiler, von der Hauptverteilung bis zur
 Unterverteilung.
-Wir liefern alle Elektrotableaus partiell typgeprüft mit Dispositionszeichnungen, NIVProtokoll
- und Bemessugsausführungskleber.
-Spezialanfertigungen und Produktewünsche sind für uns kein Problem.  Alle
-gängigen Alu-Profile haben wir ab Lager. Rahmenverteilungen können wir also auf
+Wir liefern alle Elektrotableaus partiell typgeprï¿½ft mit Dispositionszeichnungen, NIVProtokoll
+ und Bemessugsausfï¿½hrungskleber.
+Spezialanfertigungen und Produktewï¿½nsche sind fï¿½r uns kein Problem.  Alle
+gï¿½ngigen Alu-Profile haben wir ab Lager. Rahmenverteilungen kï¿½nnen wir also auf
 Ihre Massangabe ab Lager sehr kurzfristig anfertigen.<br><br>
-Die Lehrlinge unserer Elektroinstallationskunden können nach Absprache
-bei uns eine spezifische Ausbildung für den Elektrotableaubau absolvieren.
-Durch die Expertentätigkeit von Kalbermatter Frank bei den Automatikern
+Die Lehrlinge unserer Elektroinstallationskunden kï¿½nnen nach Absprache
+bei uns eine spezifische Ausbildung fï¿½r den Elektrotableaubau absolvieren.
+Durch die Expertentï¿½tigkeit von Kalbermatter Frank bei den Automatikern
 kann eine gute Ausbildungsgrundlage weiter gegeben werden.
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Hausverteilung")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Hausverteilung&pos=".$_GET['pos']."' target='_top'>> Referenzen <</a>";
@@ -68,6 +68,6 @@ if(is_file($preisliste)){
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

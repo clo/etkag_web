@@ -1,7 +1,7 @@
-<?
+<?PHP
 include("header.php");
 ?>
-<h3>Sanitäranlagen</h3>
+<h3>Sanitï¿½ranlagen</h3>
 <table class=normal border=0>
 <tr>
   <td>
@@ -19,21 +19,21 @@ include("header.php");
 </tr>
 <tr><td colspan=2>
 Durch unsere guten Kenntnisse von Wasseraufbereitungssystemen sind wir 
-sicher der ideale Partner für den Elektroteil von Schwimmbad-, Whirlpool- 
+sicher der ideale Partner fï¿½r den Elektroteil von Schwimmbad-, Whirlpool- 
 und Pumpensteuerungen. Ob Relais- oder SPS-Steuerung, wir haben gute Erfahrungen 
-um Sie preiswert zu unterstützen. Erstellen von Pflichtenheft und  Elektroschema, 
-Ausführung Elektrotableau und SPS-Software, Inbetriebnahme und Servicedienst, 
-wir können Ihnen die passende Elektrosteuerung ausführen.<br>
-Die Bedienung der Anlage kann übersichtlich auf einem Touch-Panel geschehen. 
-Einfache Änderungen des Betriebsablaufes geschehen direkt auf dem Touch-Panel. 
-Bei einem Telefon-Modem haben wir Zugriff auf die SPS-Steuerung und können bei 
+um Sie preiswert zu unterstï¿½tzen. Erstellen von Pflichtenheft und  Elektroschema, 
+Ausfï¿½hrung Elektrotableau und SPS-Software, Inbetriebnahme und Servicedienst, 
+wir kï¿½nnen Ihnen die passende Elektrosteuerung ausfï¿½hren.<br>
+Die Bedienung der Anlage kann ï¿½bersichtlich auf einem Touch-Panel geschehen. 
+Einfache ï¿½nderungen des Betriebsablaufes geschehen direkt auf dem Touch-Panel. 
+Bei einem Telefon-Modem haben wir Zugriff auf die SPS-Steuerung und kï¿½nnen bei 
 Anpassungen des Betriebsablaufes auch von extern helfen.<br>
-Gerade bei Schwimmbadsteuerungen für Hotels macht es Sinn, die Steuerung mit 
-der sonstigen Gebäudeautomation zu integrieren, damit der Hotelier nur ein 
-System bedienen und überwachen muss.
+Gerade bei Schwimmbadsteuerungen fï¿½r Hotels macht es Sinn, die Steuerung mit 
+der sonstigen Gebï¿½udeautomation zu integrieren, damit der Hotelier nur ein 
+System bedienen und ï¿½berwachen muss.
 
 <br><br>
-<?
+<?PHP
 $myDoc = new doc();
 if ($myDoc->docAvailable("./doc/referenzen/Sanitaeranlage")) {
   echo "<a class=main href='index.php?site=referenzen&dir=Sanitaeranlage&pos=".$_GET['pos']."' target='_top'>> Referenzen <</a>";
@@ -58,6 +58,6 @@ if ($myDoc->docAvailable("./doc/referenzen/Sanitaeranlage")) {
   </td>
 </tr>
 </table>
-<?
+<?PHP
 include("footer.php");
 ?>

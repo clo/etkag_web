@@ -1,6 +1,6 @@
 <!--<html>
 <head>
-<title><?echo $pagetitle?></title>
+<title><?PHPecho $pagetitle?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <LINK href="./css/etkag.css" media=screen rel=stylesheet type=text/css>
 </head>-->
@@ -16,7 +16,7 @@
 <img src='img/iqnet_50px.jpg' border=0 title='IQNet'>
 </td>
 <td align="right" width="300" rowspan="2" bgcolor="#FF0000">
-<?
+<?PHP
 //include('./cfg/config.inc.php');
 if (!empty($picture_top[$_GET['site']]) && is_file($picture_top[$_GET['site']])){
   $imgpath = $picture_top[$_GET['site']];
@@ -31,7 +31,7 @@ echo "<img src='".$imgpath."' height='100' border='0'>";
 
 <tr wdith="500">
 <td colspan=2>
-<?
+<?PHP
 include_once("location.php");
 
 ?>
