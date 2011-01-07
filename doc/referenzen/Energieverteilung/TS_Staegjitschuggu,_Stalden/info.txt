@@ -1,0 +1,4 @@
+kunde=
+datum=21.04.2005
+bemerkung=TS Station
+

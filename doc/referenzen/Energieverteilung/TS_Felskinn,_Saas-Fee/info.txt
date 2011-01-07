@@ -1,0 +1,3 @@
+kunde=ETG Salzmann AG
+datum=16.06.2006
+bemerkung=690V Anlage

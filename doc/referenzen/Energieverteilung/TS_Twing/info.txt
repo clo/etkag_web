@@ -1,0 +1,4 @@
+kunde=EWBN, Brig
+datum=20.04.2003
+bemerkung=
+

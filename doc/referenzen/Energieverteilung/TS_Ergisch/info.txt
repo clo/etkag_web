@@ -1,0 +1,4 @@
+kunde=ETG Salzmann AG
+datum=23.07.2004
+bemerkung=
+

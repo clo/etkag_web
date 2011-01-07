@@ -1,0 +1,4 @@
+kunde=TZ Stromag
+datum=21.08.2006
+bemerkung=
+
