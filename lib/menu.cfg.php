@@ -12,7 +12,7 @@ $menutree_new[137000] 	= "Stephan;index.php?site=cv_stephan;0;";
 $menutree_new[138000] 	= "Praktikant;index.php?site=cv_praktikant;0;";
 $menutree_new[140000] 	= "Dokumente;index.php?site=iso;1;";
 $menutree_new[141000] 	= "ISO-Zertifizierung;index.php?site=iso;1;";
-$menutree_new[142000] 	= "Gesch�ftsdokumentation;index.php?site=geschaeftsdokumentation;1;";
+$menutree_new[142000] 	= "Geschäftsdokumentation;index.php?site=geschaeftsdokumentation;1;";
 $menutree_new[143000]	= "Logos;index.php?site=logos;1";
 $menutree_new[150000] 	= "Infrastruktur;index.php?site=infrastruktur;1";
 $menutree_new[160000]	= "Elektrotableau;index.php?site=elektrotableau;1";
@@ -26,7 +26,7 @@ $menutree_new[164000]	= "Industrie;index.php?site=industrie;1";
 $menutree_new[164010]	= "Referenzen;index.php?site=referenzen&dir=industrie;0";
 $menutree_new[165000]	= "Haustechnik;index.php?site=haustechnik;1";
 $menutree_new[165010]	= "Referenzen;index.php?site=referenzen&dir=haustechnik;0";
-$menutree_new[166000]	= "Sanit�ranlagen;index.php?site=sanitaeranlage;1";
+$menutree_new[166000]	= "Sanitäranlagen;index.php?site=sanitaeranlage;1";
 $menutree_new[166010]	= "Referenzen;index.php?site=referenzen&dir=sanitaeranlage;0";
 $menutree_new[167000]	= "Strassentunnel;index.php?site=strassentunnel;1";
 $menutree_new[167010]	= "Referenzen;index.php?site=referenzen&dir=strassentunnel;0";
@@ -43,7 +43,7 @@ $menutree_new[310000]	= "Anfahrt;index.php?site=anfahrt;1";
 $menutree_new[311000]	= "Email;index.php?site=email;0";
 $menutree_new[312000]	= "Anfahrt;index.php?site=anfahrt;0";
 $menutree_new[500000]	= "News;index.php?site=news;1";
-$menutree_new[600000]	= "Anl�sse;index.php?site=anlaesse;1";
+$menutree_new[600000]	= "Anlässe;index.php?site=anlaesse;1";
 $menutree_new[900000]	= "Admin;index.php?site=admin;1";
 
 

@@ -1,5 +1,5 @@
 <?PHP
-include("../cfg/error.inc.php");
+include("cfg/error.inc.php");
 
 function constructVar(&$arr,$excludevar){
 	$retval = '';

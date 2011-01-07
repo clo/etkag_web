@@ -7,7 +7,7 @@ if ($_GET['w']=='dok'){
 }
 $myDoc = new doc($_GET[dir]);
 ?>
-<h3><?PHPecho $title.": ".$myDoc->formatLinkName($_GET['kom']);?></h3>
+<h3><?PHP echo $title.": ".$myDoc->formatLinkName($_GET['kom']);?></h3>
 <?PHP
 $base="doc/referenzen/".$spez."/".$_GET['dir'];
 $dir_arr = $myDoc->getFiles($_GET[dir],"^etkag_|pdf$");

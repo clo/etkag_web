@@ -3,7 +3,7 @@ $id=session_start();
 ?>
 <html>
 <head>
-<title><?PHPecho $pagetitle?></title>
+<title><?PHP echo $pagetitle?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta name="description" content="ETK AG Elektro-Tableau Kalbermatter AG Schaltanlagen und Automation Naters">
 <meta name="keywords" content="ETK AG Elekrto-Tableau Kalbermatter AG Schaltanlagen Automation Elektro Kasten Naters Automation Geb�udeautomation Brennstempel Energieverteilung Hausverteilung Verteilung Haustechnik Industrie Strassentunnel Spezialanlagen Baufirma Musterdisposition Elektrobrennstempel Wallis Schweiz">

@@ -18,6 +18,8 @@ echo $myDoc->formatLinkName($_GET['dir'],true,true);
 ?></h3>
 <?PHP
 
+print_r($_GET);
+
 if (!isset($_GET[dir])){
   $dir_arr = $myDoc->getFolders($base,false);
   $dir_arr = $myDoc->sortArr($dir_arr);
@@ -42,6 +44,7 @@ if (!isset($_GET[dir])){
     echo "</p>";
   }
 }else{
+  print_r($dir_arr);
   echo "<table class=ref border=0>";
   $content = $myDoc->getFileContent($base."/".$_GET[dir]."/info.txt");
   echo "<tr><td=width=300>";
@@ -49,7 +52,7 @@ if (!isset($_GET[dir])){
   echo "</td></tr>";
   $myDoc->path=$base."/".$_GET[dir];
   if ($myDoc->docAvailable()){
-    $file_arr = $myDoc->getFiles(null,"pdf$|etkag_.*jpg$");
+    $file_arr = $myDoc->getFiles(null,"php$|pdf$|etkag_.*jpg$");
     foreach ($file_arr as $key => $file){
       $linkname = $myDoc->formatLinkName($file,false,true,"etkag_",null,false,true);
       echo "<tr>";
