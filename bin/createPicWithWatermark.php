@@ -1,4 +1,4 @@
-<?PHPphp 
+<?PHP
 error_reporting(E_ALL);
 //set_time_limit(120);
 ob_end_flush();

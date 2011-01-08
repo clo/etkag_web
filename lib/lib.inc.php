@@ -1,6 +1,10 @@
 <?PHP
-include("cfg/error.inc.php");
-
+if (is_file("cfg/error.inc.php")){
+    include_once("cfg/error.inc.php");
+}
+if (is_file("../cfg/error.inc.php")){
+    include_once("../cfg/error.inc.php");
+}
 function constructVar(&$arr,$excludevar){
 	$retval = '';
 	foreach ($arr as $var => $val){

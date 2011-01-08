@@ -1,4 +1,4 @@
-<?PHPphp
+<?PHP
 /***************************************************************************
  *  Some basic script function;
  ***************************************************************************/
@@ -10,13 +10,13 @@ ob_end_flush();
 /***************************************************************************
  * LIBRARIES
  ***************************************************************************/
-require_once("../cfg/config.inc.php");
-require_once("../lib/class.doc.php");
-require_once("../lib/class.ftp.php");
-require_once("../lib/class.timer.php");
-require_once("../lib/class.wget.php");
-require_once("../lib/class.pictureresizer.php");
-require_once("../lib/lib.inc.php");
+include("../cfg/config.inc.php");
+include("../lib/class.doc.php");
+include("../lib/class.ftp.php");
+include("../lib/class.timer.php");
+include("../lib/class.wget.php");
+include("../lib/class.pictureresizer.php");
+include("../lib/lib.inc.php");
 
 
 /***************************************************************************
