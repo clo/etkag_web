@@ -18,8 +18,6 @@ echo $myDoc->formatLinkName($_GET['dir'],true,true);
 ?></h3>
 <?PHP
 
-print_r($_GET);
-
 if (!isset($_GET[dir])){
   $dir_arr = $myDoc->getFolders($base,false);
   $dir_arr = $myDoc->sortArr($dir_arr);
@@ -54,11 +52,15 @@ if (!isset($_GET[dir])){
   if ($myDoc->docAvailable()){
     $file_arr = $myDoc->getFiles(null,"php$|pdf$|etkag_.*jpg$");
     foreach ($file_arr as $key => $file){
-      $linkname = $myDoc->formatLinkName($file,false,true,"etkag_",null,false,true);
-      echo "<tr>";
-      echo "<td width=300>";
-      echo "<a class=main href='$base/".$_GET[dir]."/$file' onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\" target='_new'>$linkname</a></td>";
-      echo "</tr>";
+      if (preg_match("/php$/",$file)) {
+        include($base."/".$_GET[dir]."/".$file);
+      }else{
+        $linkname = $myDoc->formatLinkName($file,false,true,"etkag_",null,false,true);
+        echo "<tr>";
+        echo "<td width=300>";
+        echo "<a class=main href='$base/".$_GET[dir]."/$file' onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\" target='_new'>$linkname</a></td>";
+        echo "</tr>";
+      }
     }  
   } 
   echo "</table>";   

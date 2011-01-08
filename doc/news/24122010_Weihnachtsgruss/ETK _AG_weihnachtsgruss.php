@@ -5,4 +5,4 @@
  */
 ?>
 
-<iframe title="YouTube video player" class="youtube-player" type="text/html" width="750" height="446" src="http://www.youtube.com/embed/FXgavpV3GVo?rel=0" frameborder="0"></iframe>
+<iframe title="YouTube video player" class="youtube-player" type="text/html" width="599" height="362" src="http://www.youtube.com/embed/FXgavpV3GVo?rel=0" frameborder="0"></iframe>

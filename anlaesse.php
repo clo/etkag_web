@@ -42,6 +42,13 @@ if (!isset($_GET[dir])){
     echo "</p>";
   }
 }else{
+  $file_arr = $myDoc->getFiles($base."/".$_GET[dir],"php$");
+  if (count($file_arr)>0){
+    foreach($file_arr as $key => $file) {
+      include($base."/".$_GET[dir]."/".$file);
+      echo "<br>";
+    }
+  }else{
   echo "<table class=ref border=0>";
   $content = $myDoc->getFileContent($base."/".$_GET[dir]."/info.txt");
   echo "<tr><td=width=300>";
@@ -122,7 +129,8 @@ if (!isset($_GET[dir])){
        echo "</td>";
        echo "</tr>";
     }  
-  } 
+  }
+  }
   echo "</table>";   
 }
 
