@@ -135,7 +135,7 @@ if (!isset($_GET[dir])){
 }
 
 ?>
-<p><a class=main href="javascript:history.back(-1);">> zur�ck <</a></p>
+<p><a class=main href="javascript:history.back(-1);">> zur&uuml;ck <</a></p>
 <?PHP
 include("footer.php");
 ?>
