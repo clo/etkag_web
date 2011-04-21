@@ -41,4 +41,7 @@ $cfg_ftp_pw = 'jvd88p6c';
 
 $google_picasa_user = 'christian.lochmatter@gmail.com';
 $google_picasa_pass = 'k74tmere$';
+//$google_picasa_user = 'etkag00@gmail.com';
+//$google_picasa_pass = 'etkag-SRV';
+
 ?>
