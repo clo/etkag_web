@@ -228,7 +228,8 @@ function getFiles($dir=null,$include=".*"){
       if (is_file($dir."/info.txt")){
         $fh = fopen($dir."/info.txt","r");
         $content = fread($fh, filesize($dir."/info.txt"));
-        $file_arr = split("\n",$content);
+        //$file_arr = split("\n",$content);
+        $file_arr = explode("\n",$content);
         foreach($file_arr as $key => $val){
       	  //list($k,$v) = split("=",$val);
       	  if (!preg_match("/^#/",$val)){
@@ -415,12 +416,12 @@ function getFiles($dir=null,$include=".*"){
   }
   
   function replaceUmlaut($link){
-    $link = str_replace("�","ae",$link);
-  	$link = str_replace("�","ue",$link);
-  	$link = str_replace("e�","eue",$link);
-  	$link = str_replace("�","oe",$link);
-  	$link = str_replace(" ","_",$link);
-  	return $link;
+    $link = str_replace("ä","ae",$link);
+    $link = str_replace("ü","ue",$link);
+    $link = str_replace("eü","eue",$link);
+    $link = str_replace("ö","oe",$link);
+    $link = str_replace(" ","_",$link);
+    return $link;
   }
   
   function createDir($dir){
@@ -434,14 +435,15 @@ function getFiles($dir=null,$include=".*"){
   
   function createDirRecursive($dir){
     if(is_string($dir)){
-      $arr = split('\/',$dir);
+      //$arr = split('\/',$dir);
+      $arr = explode('\/',$dir);
       $this->createDirRecursive($arr);
     }
     if (is_array($dir)){
       $dt = '';
       foreach ($dir as $d){
         $dt .= $d;
-		$this->createDir($dt);
+	$this->createDir($dt);
         $dt .= '/';
       }
     }
