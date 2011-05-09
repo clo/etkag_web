@@ -54,8 +54,8 @@ class pictureresizer {
   function _check_gd(){
     //check if JPG support is available
     $aGD = gd_info();
-    if($aGD['JPG Support']!='1'){
-      $myDoc->debug('JPG is not supported by GD.');
+    if($aGD['JPEG Support']!='1'){
+      $this->doc->debug('JPG is not supported by GD.',true);
       exit;
     }
   }  
