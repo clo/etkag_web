@@ -19,6 +19,10 @@ echo $myDoc->formatLinkName($_GET['dir'],true,true);
 ?>
 </h3>
 <?PHP
+/*
+ * Show all directories
+ */
+include("picasa_list_album.php");
 if (!isset($_GET[dir])){
   $dir_arr = $myDoc->getFolders($base,false);
   $dir_arr = $myDoc->sortArr($dir_arr);
@@ -41,7 +45,11 @@ if (!isset($_GET[dir])){
     echo getErrMsg(3);
     echo "</p>";
   }
+/*
+ * show alle picture in a selected directory 
+ */
 }else{
+  }
   $file_arr = $myDoc->getFiles($base."/".$_GET[dir],"php$");
   if (count($file_arr)>0){
     foreach($file_arr as $key => $file) {
@@ -126,7 +134,6 @@ if (!isset($_GET[dir])){
        echo "</td>";
        echo "</tr>";
     }  
-  }
   }
   echo "</table>";   
 }
