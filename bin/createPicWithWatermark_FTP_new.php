@@ -2,7 +2,8 @@
 /***************************************************************************
  *  Some basic script function;
  ***************************************************************************/
-error_reporting(E_ALL ^ E_NOTICE);
+//error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL);
 ini_set("memory_limit","200M");
 set_time_limit(0);
 ob_end_flush();
@@ -27,12 +28,12 @@ $pass = $cfg_ftp_pw;
 $ftpsrc = 'ftp://ftp.rhone.ch/htdocs/doc';
 $pendingfilestodownload = "./files_download_failed.log";
 $preindex = "etkag_";
-$srcdir = "C:/data/z0/sandbox/etkag2/bin/ftp.rhone.ch";
+$srcdir = "Z:/LOC/kjoff/etkag2/bin/ftp.rhone.ch";
 $src = "C:/data/Z0/sandbox/etkag2/bin/ftp.rhone.ch";
 //$srcdir = "htdocs/doc/";
-$desdir = "H:/download/wget/www.etkag.ch/doc";
+$desdir = "Z:/temp/wget/www.etkag.ch/doc";
 $except_dir = "logos|organigramm|Thumbs.db";
-$include = "/.jpg/i";
+$include = "/.jpg|.JPG/i";
 $exclude = "/etkag_|organigramm/";
 //$srcdir = "C:/Dokumente und Einstellungen/Christian/Eigene Dateien/Eigene Bilder/Sambistas/";
 //$desdir = "C:/Dokumente und Einstellungen/Christian/Eigene Dateien/Eigene Bilder/Sambistas/output";
