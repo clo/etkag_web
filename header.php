@@ -5,7 +5,7 @@
 
 <LINK href="./css/etkag.css" media=screen rel=stylesheet type=text/css>
 <!-- used for lightbox2, http://www.huddletogether.com/projects/lightbox2/ -->
-<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="lib/lightbox/css/lightbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="lib/lightbox/js/prototype.js"></script>
 <script type="text/javascript" src="lib/lightbox/js/scriptaculous.js?load=effects,builder"></script>
 <script type="text/javascript" src="lib/lightbox/js/lightbox.js"></script>
