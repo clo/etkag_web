@@ -92,13 +92,10 @@ if (!isset($_GET[dir])){
        $i++;
        if ($i<count($file_arr)){
          $linkname = $myDoc->formatLinkName($file_arr[$i],false,true,"etkag_",null,false,true);
-         echo "<a class=main " .
-              "href='$base/".$_GET['dir']."/".$file_arr[$i]."' " .
-              "onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\"" .
-              "target='_new'>".
+         $image = $base."/".$_GET['dir']."/".$file_arr[$i];
+         echo "<a href='$image' rel='lightbox' title='$linkname'>" .
               "<img src='img.php?file=".$base."/".$_GET['dir']."/".$file_arr[$i]."' border=0>".
-              "</a><br>".
-              "<div class='pictext_left'>$linkname</div>";
+              "</a>";
        }
        echo "</td>";
        echo "<td width=120>";
