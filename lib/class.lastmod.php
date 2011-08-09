@@ -3,14 +3,11 @@
 class lastmod {
   var $date = 0;
   var $lastmod = 0;
-  var $exclude_dir = "doc";
+  var $exclude_dir = "";
   var $format = "d.m.Y H:i:s";
   var $path = "";
   
  
-//echodir("./");
-//$lastmod = "Letzte &Auml;nderung: ".date("d.m.Y H:i:s",$date)."\n";
-
   function getLastMod($format = null){
     if (is_null($format)){
       $format = $this->format;
@@ -19,28 +16,28 @@ class lastmod {
   }
 
   function chkLastMod($path){   
+    //echo $path."<br />";
     $suche = "";
-    $dir = @dir($path);
-    if (! $dir) {return;}
-
-    while(false !== ($file = $dir->read())){
-      if (!eregi($this->exclude_dir, $file)) {
+    $dh = opendir($path);
+    while(false !== ($file = readdir($dh))){
+      //echo $file."<br />";
+      //if (!preg_match("/$this->exclude_dir/", $file)) {
         if(($file != ".") && ($file != "..")){
           if(is_dir($path."/".$file)) {
-            getLastMod($this->path."/".$file);
+            $this->chkLastMod($path."/".$file);
           } else {
-            if(preg_match("/$suche/",$file)){ // f�r suche
+            if(preg_match("/$suche/",$file)){ // for search
+              //echo $file;
               $newdate = filemtime($path."/".$file);
-              if ($newdate > $date) {
-                $date = $newdate;
+              if ($newdate > $this->lastmod) {
+                $this->lastmod = $newdate;
               }
             }
           }
         }
-      }
+      //}
     }
-    $dir->close();
-    $this->lastmod = $date;
+    closedir($dh);
   }
 
 

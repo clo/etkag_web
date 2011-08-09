@@ -1,6 +1,8 @@
+<div class="bottom">
 <?PHP
 $myMod = new lastmod();
-$myMod->chkLastMod("./");
+$myMod->chkLastMod($g_content);
 $bottom = str_replace("###LASTMOD###",$myMod->getLastMod(),$bottom);
 ?>
-<p class=bottom><?PHP echo $bottom; ?></p>
+<?PHP echo $bottom; ?>
+</div>

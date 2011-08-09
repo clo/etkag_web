@@ -1,0 +1,56 @@
+'-------------------------------------------------------------------------------
+' Dies ist Kommentar, Kommentare starten mit '
+'
+' Neue Linie:
+' ##
+' z.Bsp:
+' Hallo Frank##
+' Wie geht es dir und Diego?####
+'
+' internen Link
+' #LINK:<seitennamen>[|Beschreibung]#
+' z.Bsp:
+' #LINK:werkstatt|Unsere Werkstatt#
+'
+' Externen Link
+' #LINKEXTERN:<seitenamen>[|Beschreibung]#
+' z.Bsp:
+' #LINKEXTERN:www.canon.ch|CANON#
+'
+' Dokumente einfügen
+' #DOKUMENT:#
+'
+' Referenzen einfügen.
+' Dazu muss ein Unterorder mit dem Name referenzen exisiteren.
+' In diesem Unterorder gibt es ein Ordner mit dem Namen dokument und foto. Im dokuemnt
+' Ordner werden Dokumente abgelegt und im foto Ordner werden fotos abgelegt.
+' #REFERENZ#
+'
+' Einfügen von Referenzobjekten
+' #REFOBJEKT:DIR=01_Objekt#
+' z.Bsp:
+' #REFOBJEKT:DIR=01_Objekt#
+' #REFOBJEKT:DIR=02_Objekt#
+'
+' Bilder einfügen, des aktuellen Verzeichnises, nur solche mit JPG oder jpg am Ende
+' #BILD:#
+' #BILD:KOL=3;BREITE=200#
+' einzelnes Bild einfügen
+' #BILD:test.jpg#
+'
+' Eine zusätzliche Überschrift
+' = Überschrift =
+'
+' Etwas fett markiern
+' *fett*
+'
+' Eine Aufzählung
+' ~aufzählung~
+'
+' Video einfügen, Video muss zuerst auf youtoube hochgeladen werden.
+' #HTML:#
+' z.Bsp:
+' #HTML:<iframe title="YouTube video player" class="youtube-player" type="text/html" width="599" height="362" src="http://www.youtube.com/embed/FXgavpV3GVo?rel=0" frameborder="0">#
+'
+'-------------------------------------------------------------------------------
+Titel kommt hier

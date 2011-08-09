@@ -1,4 +1,6 @@
 <?PHP
+//test
+//wird nicht mehr benötigt
 $dirChangePictures = "./fotos/wechselnde_bilder";
 $picture_top['default'] = "./fotos/werkstatt.jpg";
 $picture_top['cv_frank'] = "./fotos/frank.jpg";
@@ -26,23 +28,62 @@ $picture_top['elektrobrennstempel'] = "./fotos/brennstempel.jpg";
 $picture_top['automation'] = "./fotos/automation.jpg";
 $picture_top['industrie'] = "./fotos/industrie.jpg";
 
-
-
 $menu_class[1] = 'm1';
 $menu_class[2] = 'm2';
 $menu_class[3] = 'm3';
 $menu_class[4] = 'm4';
 
-$cfg_username='admin';
-$cfg_password='etk01';
+$g_path_cfg = "./cfg";
+$g_path_bin = "./bin";
+$g_path_lib = "./lib";
 
-$cfg_ftp_un ='kalbjean';
+$g_cfg_username[1] = 'admin';
+$g_cfg_password[1] = 'etk01';
+$g_cfg_username[2] = 'zugji';
+$g_cfg_password[2] = 'zug';
+$g_cfg_username[3] = 'frank';
+$g_cfg_password[3] = 'Ftk70';
+
+$cfg_ftp_host = 'www.rhone.ch';
+$cfg_ftp_un = 'kalbjean';
 $cfg_ftp_pw = 'jvd88p6c';
 
+/*
+ * PICASA user
+ */
 $google_picasa_log = "log/google_picasa.log";
 //$google_picasa_user = 'christian.lochmatter@gmail.com';
 //$google_picasa_pass = 'k74tmere$';
 $google_picasa_user = 'etkag00@gmail.com';
 $google_picasa_pass = 'etkag-SRV';
 
+$g_error_reporting = E_ALL & !E_NOTICE;
+//$g_error_reporting = E_ALL;
+
+$g_lytebox = "rel='lightbox[set1]'";
+
+$g_content = "doc/hauptseite";
+$g_document_to_show = ".pdf$|.PDF$|.php$";
+//WICHTIG: nur einen punkt verwenden
+$g_info_file = "info.txt";
+$g_backup_info_file_after_edit = true;
+$g_right_picture_pattern_type = ".JPG$|.jpg$";
+$g_right_doc_pattern_type = ".PDF$|.pdf$";
+$g_max_right_picture_width = 250;
+$g_content_right_with_t4 = "motto;3|news;3|anlaesse;3";
+$g_picture_width = 150;
+$g_picture_width_referenceobject = 200;
+$g_nr_of_picture_per_line = 4;
+$g_picture_to_show = ".jpg$|.JPG$";
+//Folgender Wert muss gleich sein, wie table.contentpicture.width im css/etkag.css
+$g_table_content_width = 500;
+$g_wiki_help = $g_path_cfg . "/wikihelp.txt";
+
+$g_configs_to_modify[] = $g_path_cfg . "/config.inc.php";
+$g_default_template = 2; //1-4, 2 means no content on the right hand site
+
+//RSS
+//$g_feeds[] = "news";
+//$g_feeds[] = "angebote";
+//$g_feeds[] = "motto";
 ?>

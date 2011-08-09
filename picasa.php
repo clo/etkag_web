@@ -84,15 +84,21 @@ if (isset($_GET['albumname'])){
  * -------------------------------------------------------------------------- */
 if (!isset($_SESSION['albumname'])) {
     $query = new Zend_Gdata_Photos_AlbumQuery();
-    $query->setUser("christian.lochmatter");
+    $query->setUser(str_replace("@gmail.com","",$google_picasa_user));
     //$query->setAlbumName($_SESSION['albumname']);
     //$query->setType("entry");
 
     try {
-        $userFeed = $gp->getUserFeed('default');
+        $userFeed = $gp->getUserFeed(str_replace("@gmail.com","",$google_picasa_user));
         foreach ($userFeed->getEntry() as $l){
           $title = $l->getTitle()->getText();
+          echo $l->getId();
           echo "<a class='main' href='$me?albumname=$title'>$title</a><br />\n";
+
+//          echo $l->getID()->getText();
+//          echo "<pre>";
+//          print_r($l);
+//          exit(1);
         }
     } catch (Zend_Gdata_App_Exception $e) {
         echo "Error: " . $e->getMessage();

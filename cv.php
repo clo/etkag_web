@@ -1,10 +1,13 @@
 <?PHP
 include("header.php");
-$dir="doc/organigramm";
+$pattern="/unserteam$/";
+$myDoc = new doc();
+$myDoc->find_dir($g_content,$pattern,$dir);
+unset($myDoc);
 $myDoc = new doc($dir);
 $val = $myDoc->getDetailInformation($dir,"^id=".$_GET['id']);
 
-echo "<h3>".$val['titel']."</h3>";
+echo "<h3 class='contenttitle'>".$val['titel']."</h3>";
 
 echo "<div align='left'>";
 echo "<table border=0 class=cv>";
@@ -20,7 +23,7 @@ foreach($val as $k => $v){
 
 $pic = $myDoc->getFileTypeSymbol('pdf');
 echo "<tr><td colspan='2'>$pic&nbsp;<a class='main' href='".$val['lebenslauf']."' target='_new'>Lebenslauf</a></td></tr>";
-echo "<tr><td colspan='2'><a class='main' href='' onClick='javascript:history.back();'>>zur�ck<</a></td></tr>";
+echo "<tr><td colspan='2'><a class='main' href=\"index.php?site=unserteam&pos=".$_GET['pos']."&level=\">>zur&uuml;ck<</a></td></tr>";
 echo "</table>";
 echo "</div>";
 

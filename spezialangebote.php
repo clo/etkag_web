@@ -1,8 +1,8 @@
 <?PHP
 include("header.php");
 ?>
-<h3>Spezialangebote</h3>
-<table class=normal border=0>
+<h3 class="contenttitle">Spezialangebote</h3>
+<table class="content" border=0>
 <?PHP
 $base="doc/spezialangebote";
 $myDoc = new doc($base);

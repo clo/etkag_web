@@ -3,6 +3,10 @@
 set_include_path("lib;".  get_include_path());
 $me = basename($_SERVER['PHP_SELF']);
 
+if ($me == "picasa_list_album.php"){
+  include_once("cfg/config.inc.php");
+}
+
 /*
  * Load Zend framework for handling picasa web albums
  */
@@ -15,8 +19,6 @@ Zend_Loader::loadClass('Zend_Gdata_Photos_PhotoQuery');
 Zend_Loader::loadClass('Zend_Gdata_Photos');
 Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
 Zend_Loader::loadClass('Zend_Gdata_AuthSub');
-echo "Include Path: " . get_include_path()."<br />\n";
-
 
 $serviceName = Zend_Gdata_Photos::AUTH_SERVICE_NAME;
 $user = $google_picasa_user;
@@ -31,14 +33,20 @@ $gp = new Zend_Gdata_Photos($client);
  * no albumname is given, list all availalbe albums
  * -------------------------------------------------------------------------- */
 $query = new Zend_Gdata_Photos_AlbumQuery();
-$query->setUser(str_replace("@gmail.com","",$google_picasa_user));
 
 try {
-  $userFeed = $gp->getUserFeed($query);
+  $userFeed = $gp->getUserFeed(str_replace("@gmail.com","",$google_picasa_user));
+  echo "<table>";
   foreach ($userFeed->getEntry() as $l){
     $title = $l->getTitle()->getText();
-    echo "<a class='main' href='picasa_list_albumphotos.php?albumname=$title'>$title</a><br />\n";
+    //2011-05-09T09:38:34.766Z
+    $datum = date("d.m.Y",mktime(0,0,0,
+                                 substr($l->getUpdated(),5,2),
+                                 substr($l->getUpdated(),8,2),
+                                 substr($l->getUpdated(),0,4)));
+    echo "<tr><td>$datum</td><td><a class='main' href='picasa_list_albumphotos.php?albumname=$title'>$title</a></td></tr>\n";
   }
+  echo "</table>";
 } catch (Zend_Gdata_App_Exception $e) {
   echo "Der Picasa Service von Google steht im Moment nicht zur Verfügung.<br />\n";
   $fh = fopen($google_picasa_log,"a+");
