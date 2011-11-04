@@ -5,7 +5,9 @@
  */
 
 $file = $myDoc->path . "/" . $g_info_file;
-$myDoc->find_dir($g_content,"/\/".$_GET['dir']."$/",$dir);
+//$myDoc->find_dir($g_content,"/\/".$_GET['dir']."$/",$dir);
+$dir = $_SESSION['site'][$_GET['dir']];
+
 $myDoc->path=$dir;
 $file = $dir."/".$g_info_file;
 //echo $file."<br />";

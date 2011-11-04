@@ -1,7 +1,4 @@
-<?PHP
-include("header.php");
-?>
-<h3>Wir fabrizieren Elektrotableau f&uuml;r</h3>
+<h3 class="contenttitle">Wir fabrizieren Elektrotableau f&uuml;r</h3>
 <table class=normal border=0>
 <tr>
   <td>
@@ -50,6 +47,3 @@ include("header.php");
   </td>
 </tr>
 </table>
-<?PHP
-include("footer.php");
-?>

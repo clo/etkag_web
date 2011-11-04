@@ -1,7 +1,10 @@
 body{ position: absolute; top: 0px; background: #36121C; left: 20px;}
-div.top { background:#76273C; border: #76273C solid 1px; font-family: Arial; font-size: 12px; margin-left:0px; font-weight: normal; width:1100px; vertical-align: middle;}
-span.topleft { text-align: left; width: 500px;  margin-left: 5px;}
-span.topright { text-align: right; width: 500px;color: white; display: inline; margin-right: 10px; height: 120px;}
+
+div.top { vertical-align: middle; height: 118px; background:#76273C; border: #76273C solid 1px; font-family: Arial; font-size: 12px; margin-left:0px; font-weight: normal; width:1100px;}
+/*span.top { background:#76273C; border: #76273C solid 1px; font-family: Arial; font-size: 12px; margin-left:0px; font-weight: normal; width:224px;}*/
+div.topleft { float: left; height: 100%; width:224px; vertical-align: middle; text-align: center;}
+div.topright { height: 100%; position: relative; text-align: right; color: white; display: inline;}
+
 div.topseparator_white { width: 1100px; background: #FFFFFF; height: 1px; border-right: #76273C 1px solid; border-left: #76273C 1px solid;}
 div.topseparator_grey { width: 1100px; background: #DDDDDD; height: 20; border-left: #76273C solid 1px; border-right: #76273C solid 1px;}
 div.topmenu { text-align: left; vertical-align: middle ; color: #FFFFFF; font-family: Arial; font-size: 14px; width: 1100px; background: #36121C; height: 20px; border-left: #76273C solid 1px; border-right: #76273C solid 1px;}
@@ -21,7 +24,7 @@ h3.contenttitle { font-family: Arial; font-size: 14px; font-weight: bold; color:
 h3.hometitle { font-family: Arial; font-size: 14px; font-weight: bold; color: #76273C; width: 400px; float: left; padding-bottom: 10px;}
 table.content { width: 800px; }
 table.contentpicture { width: 200px; }
-td.contentleft { width: 500px; }
+td.contentleft { width: 800px; }
 td.contentright { width: 300px; padding-left: 10px; padding-top: 30px; text-align: left; }
 table.contentrightinfo { width: 300px; border: 1px solid #76273C; margin: 0px; padding: 0px; }
 td.contentrightinfoheader { width: 300px; text-decoration: bold; background: #76273C; color: #FFFFFF; text-align: left;}
@@ -51,7 +54,7 @@ li {  font-family: Arial; font-size: 12px; margin-left:5px; font-weight: normal;
 
 table { font-size:12px; border:white; background-color:white; font-family: Arial; margin-left:0px;}
 table.toplogo { background: #76273C; color: white; }
-table.main { background: #FFFFFF; height: 100%; padding: 0px; border-spacing: 0px; border-collapse: collapse;}
+/*table.main { background: #FF0000; height: 100%; padding: 0px; border-spacing: 0px; border-collapse: collapse;}*/
 table.topnews { font-size:8px; border:white; background-color:white; width:200px; font-family: Arial; margin-left:0px;}
 table.top { background-color: #DDDDDD; width: 800; color: #76273C; font-weight: normal; margin-left: 0px; font-size:10px;}
 table.normal { background-color: white; width: 800px; color: #002740; font-weight: none; margin-left: 0;}

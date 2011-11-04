@@ -6,9 +6,10 @@ if ($_GET['w']=='dok'){
   $title = "Fotos";
 }
 $pattern="/anlaesse$/";
-$myDoc=new doc();
-$myDoc->find_dir($g_content,$pattern,$base);
-unset($myDoc);
+//$myDoc=new doc();
+//$myDoc->find_dir($g_content,$pattern,$base);
+//unset($myDoc);
+$base = $_SESSION['site'][$_GET['site']];
 $myDoc = new doc($base);
 $picasa_albumid = "";
 $youtube_albumid = "";

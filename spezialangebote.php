@@ -1,6 +1,3 @@
-<?PHP
-include("header.php");
-?>
 <h3 class="contenttitle">Spezialangebote</h3>
 <table class="content" border=0>
 <?PHP
@@ -19,5 +16,4 @@ foreach ($dir_arr as $key => $file) {
 echo "</table>";
 ?>
 <?PHP
-include("footer.php");
 ?>

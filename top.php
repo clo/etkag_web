@@ -1,9 +1,21 @@
 <?PHP
-$myDoc = new doc();
-$myDoc->find_dir($g_content,"/\/banner$/",$dir);
+if (!isset($_SESSION['site']['banner'])){
+  $myDoc = new doc();
+  $myDoc->find_dir($g_content,"/banner/",$dir);
+}else{
+  $dir = $_SESSION['site']['banner'];
+}
 echo "<div class='top'>";
-echo "<a class='main' href='index.php'><img class='top' src='$dir/logo.jpg' alt='logo' /></a>&nbsp;";
-echo "<img class='top' width='871' src='$dir/banner.jpg' alt='banner' />";
+
+echo "<div class='topleft'>";
+echo "<a href='index.php'><img class='top' width='200' src='".$dir."/logo2.jpg' alt='logo' /></a>";
+echo "</div>";
+
+$banner="$dir/banner.jpg";
+echo "<div class='topright'>";
+echo "<a href='$banner' $g_lytebox><img class='top' width='876' src='".$banner."' alt='banner' /></a>";
+echo "</div>";
+
 echo "</div>";
 unset($myDoc);
 ?>

@@ -3,9 +3,10 @@
 ?>
 <h3 class="contenttitle">Referenzen <?PHP echo replaceUmlaut(ucwords($_GET['dir'])); ?> </h3>
 <?PHP
-$pattern="/\/".lcfirst($_GET['dir'])."$/";
+//$pattern="/\/".lcfirst($_GET['dir'])."$/";
 $myDoc = new doc();
-$myDoc->find_dir($g_content,$pattern,$dir);
+//$myDoc->find_dir($g_content,$pattern,$dir);
+$dir = $_SESSION['site'][$_GET['dir']];
 $myDoc->path=$dir."/referenzen";
 $dir_arr = $myDoc->getFolders($myDoc->path,true);
 if (!empty($dir_arr)){

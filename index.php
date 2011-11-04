@@ -15,7 +15,7 @@ include_once ("./lib/class.menu.php");
 include_once ("./lib/class.lastmod.php");
 include_once ("./lib/class.doc.php");
 include_once ("./lib/class.singleton.php");
-include_once ("./lib/class.session.php");
+//include_once ("./lib/class.session.php");
 include_once ("./lib/class.pictureresizer.php");
 
 /*
@@ -42,12 +42,7 @@ foreach ($g_topmenu as $site) {
 }
 //rss
 //echo "&nbsp;|&nbsp;<a class='top' href='rss.php'>RSS</a>\n";
-//Admin
-echo "&nbsp;|&nbsp;<a class='top' href='index.php?site=login'>Admin";
-if (isset($_SESSION['loggedin'])) {
-  echo "&nbsp;(" . $_SESSION['username'] . ")";
-}
-echo "</a>\n";
+
 echo "</div>\n";
 echo "<div class='topseparator_white'><img class='spacer' src='img/spacer.gif' alt='spacer' /></div\n";
 unset($myDoc);
@@ -55,9 +50,12 @@ unset($myDoc);
 /*
  * MENU (left hand site)
  */
-echo "<div class='mainpane'>";
-echo "<div class='menu'>";
-echo "<div class='address'>$contactaddress</div>";
+if ($g_debug) {
+  $start = microtime();
+}
+echo "<div class='mainpane'>\n";
+echo "<div class='menu'>\n";
+echo "<div class='address'>$contactaddress</div>\n";
 $myMenu = new menu();
 $myMenu->setMenu($menutree_new);
 $myMenu->setPosActual($_GET['pos']);
@@ -74,12 +72,23 @@ if (isset($_GET['level']) && !empty($_GET['level'])) {
 $myMenu->setCSS($menu_class);
 $level = 1;
 $myMenu->printMenuAsDiv(null);
+if ($g_debug) {
+  $end = microtime();
+  $diff = $end - $start;
+  echo "TIMETORUN for menu: " . $diff . "<br />";
+}
 echo "</div>";
 //echo "<div class='menu_bottom'>&nbsp;</div>";
 
 /*
  * MAIN
  */
+if (isset($_GET['site']) && $g_debug){
+  echo $_SESSION['site'][$_GET['site']];
+}
+if ($g_debug) {
+  $start = microtime();
+}
 echo "<div class='content'>";
 echo "<table class='content'><tr>";
 echo "<td class='contentleft'>";
@@ -96,8 +105,8 @@ if (!isset($_GET['site'])) {
     echo "<p class='error'>" . getErrMsg(1) . "</p>";
   }
 }
+
 echo "</td>";
-echo "<td class='contentright'>";
 /*
  *   Menutext|link|on(1)/off(0)|template(1/2/3/4)
  *   template 1: bilder auf der seite werden angezeigt
@@ -105,15 +114,24 @@ echo "<td class='contentright'>";
  *   template 3: dokumente auf der seite werden angezeigt -> TODO
  *   template 4: motto, news, aktuelles, motto wird auf der seite angezeigt
  */
+
+/*
+ * Template 3
+ */
 if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
+  if ($g_debug) {
+    $start1 = microtime();
+  }
+  echo "<td class='contentright'>";
   $pattern = "/\/" . $_GET['site'] . "$/";
   $myDoc = new doc ();
-  $myDoc->find_dir($g_content, $pattern, $dir);
+  //$myDoc->find_dir($g_content, $pattern, $dir);
+  $dir = $_SESSION['site'][$_GET['site']];
   if (preg_match("/1/", trim(getTemplateNr($_GET['site'])))) {
     $aFiles = $myDoc->getFiles($dir, $g_right_picture_pattern_type);
+    $pic = new pictureresizer($myDoc);
     foreach ($aFiles as $file) {
       $linkname = ucfirst($myDoc->formatLinkName(basename($file), true, true, "", "", false, true));
-      $pic = new pictureresizer($myDoc);
       list ($picwidth, $picheight) = $pic->getImgSize($dir . "/" . $file);
       if ($picwidth > $g_max_right_picture_width) {
         $width = $g_max_right_picture_width;
@@ -123,9 +141,23 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
       echo "<a $g_lytebox class='main' border='0' href='$dir/$file' title='$linkname'>";
       echo "<img width='$width' class='etkag' src='$dir/$file' alt='$file' />";
       echo "</a>";
-      echo "<span class='pictext'>" . $linkname . "<br /></span>";
-      unset($pic);
+      if ($g_debug){
+        $size = " (" . sprintf("%d",filesize($dir.'/'.$file) / 1024) . " KBytes)";
+      }else{
+        $size = "";
+      }
+      echo "<span class='pictext'>" . $linkname . $size . "<br /></span>";
     }
+    unset($pic);
+    if ($g_debug) {
+      $end1 = microtime();
+      $diff1 = $end1 - $start1;
+      echo "TIMETORUN for picuter resizing: " . $diff1 . "<br/>";
+    }
+    echo "</td>";
+  /*
+   * Template 3
+   */
   } elseif (preg_match("/3/", trim(getTemplateNr($_GET['site'])))) {
     $aFiles = $myDoc->getFiles($dir, $g_right_doc_pattern_type);
     foreach ($aFiles as $file) {
@@ -133,20 +165,27 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
       echo "<li><a class='main' href='$dir/$file' target='_new' alt='$file'>$linkname</a></li>\n";
     }
   }
+  /*
+   * Template 4
+   */
 } elseif (preg_match("/4/", trim(getTemplateNr($_GET['site'])))) {
-
+  if ($g_debug) {
+    $start2 = microtime();
+  }
+  echo "<td class='contentright'>";
   $aMenu = explode("|", $g_content_right_with_t4);
+  $myDoc = singleton::getInstance("doc");
   foreach ($aMenu as $val) {
     echo "<table class='contentrightinfo' cellspacing='0'>\n";
     list($value, $nrOfContent) = explode(";", $val);
     echo "<tr>";
     echo "<td class='contentrightinfoheader'>";
-    echo ucfirst($value);
-    echo "&nbsp;<a href='rss.php?channel=$value'><img src='img/rss.png' border='0' /></a></td>\n";
+    echo $myDoc->insertUmlaut(ucfirst($value));
+    echo "&nbsp;<a href='rss.php?channel=$value'><img src='img/rss.png' border='0' alt='rss' /></a></td>\n";
     echo "</tr>";
     echo "<tr><td>";
-    $myDoc = singleton::getInstance("doc");
-    $myDoc->find_dir(null, "/\/$value$/", $dir);
+    //$myDoc->find_dir(null, "/\/$value$/", $dir);
+    $dir = $_SESSION['site'][$value];
     $aDir = $myDoc->getFolders($dir, true);
     $i = 1;
     foreach ($aDir as $dir) {
@@ -155,6 +194,8 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
         echo $myDoc->getDate($dir) . ": ";
         echo "<a class='main' href='index.php?site=$value&amp;pos=$pos&amp;level=&amp;dir=$dir'>" . $myDoc->formatLinkName($dir, true, true) . "</a>";
         echo "<br />\n";
+      }else{
+        continue;
       }
       $i++;
     }
@@ -166,12 +207,24 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
     echo "</table>\n";
     echo "<br />";
   }
+  if ($g_debug) {
+    $end2 = microtime();
+    $diff2 = $end2 - $start2;
+    echo "TIMETORUN for news: " . $diff2 . "<br/>";
+  }
+  echo "</td>";
 }
 
-echo "</td>";
+if ($g_debug) {
+  $end = microtime();
+  $diff = $end - $start;
+  echo "TimeToRun for main: " . $diff . " seconds";
+}
+//print_r($_SESSION);
 echo "</tr></table>";
 echo "</div>";
-echo "</div style='clear: left;background-color: red;'>";
+echo "</div>";
+echo "</div>";
 echo "</div>";
 /*
  * footer

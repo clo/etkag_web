@@ -3,10 +3,11 @@ include("header.php");
 ?>
 <h3 class="contenttitle">Gesch&auml;ftsdokumentation</h3>
 <?PHP
-$myDoc = new doc();
-$pattern="/".$_GET[site]."$/";
-$myDoc->find_dir($g_content,$pattern,$base);
-unset($myDoc);
+//$myDoc = new doc();
+//$pattern="/".$_GET[site]."$/";
+//$myDoc->find_dir($g_content,$pattern,$base);
+//unset($myDoc);
+$base = $_SESSION['site'][$_GET['site']];
 
 $myDoc = new doc($base);
 $dir_arr = $myDoc->getFiles();

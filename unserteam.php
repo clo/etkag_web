@@ -1,10 +1,11 @@
 <h3 class="contenttitle">Unser Team</h3>
 <div align='content'>
 <?PHP
-$pattern="/".$_GET['site']."$/";
-$myDoc = new doc();
-$myDoc->find_dir($g_content,$pattern,$dir);
-unset($myDoc);
+//$pattern="/".$_GET['site']."$/";
+//$myDoc = new doc();
+//$myDoc->find_dir($g_content,$pattern,$dir);
+//unset($myDoc);
+$dir = $_SESSION['site'][$_GET['site']];
 $myDoc = new doc($dir);
 $myDoc->saveContent();
 $myDoc->printEditButtonNew($dir, $g_info_file, $_GET['site']);

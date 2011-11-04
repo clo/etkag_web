@@ -1,10 +1,10 @@
 <?PHP
 
-include("header.php");
 $myDoc = new doc();
 $myDoc->getContentFromInfoFile($_GET['site']);
-$myDoc->find_dir($g_content, "\/$pattern$/", $dir);
-$myDoc->path = $dir;
+//$myDoc->find_dir($g_content, "\/$pattern$/", $dir);
+//$dir = $_SESSION['site'][$_GET['site']];
+//$myDoc->path = $dir;
 unset($myDoc);
-include("footer.php");
+//include("footer.php");
 ?>

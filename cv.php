@@ -1,9 +1,9 @@
 <?PHP
-include("header.php");
-$pattern="/unserteam$/";
-$myDoc = new doc();
-$myDoc->find_dir($g_content,$pattern,$dir);
-unset($myDoc);
+//$pattern="/unserteam$/";
+//$myDoc = new doc();
+//$myDoc->find_dir($g_content,$pattern,$dir);
+//unset($myDoc);
+$dir = $_SESSION['site'][$_GET['site']];
 $myDoc = new doc($dir);
 $val = $myDoc->getDetailInformation($dir,"^id=".$_GET['id']);
 

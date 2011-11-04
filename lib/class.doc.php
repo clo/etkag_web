@@ -30,7 +30,11 @@ class doc {
   function getDate($dir, $format='d.m.Y') {
     if (!empty($dir) && !is_null($dir)) {
       preg_match('/^([0-9]{6})(.*)$/i', $dir, $target);
-      return date($format, mktime(0, 0, 0, substr($target[0], 2, 2), substr($target[0], 0, 2), substr($target[0], 4, 4)));
+      if (isset($target[0])){
+        return date($format, mktime(0, 0, 0, substr($target[0], 2, 2), substr($target[0], 0, 2), substr($target[0], 4, 4)));
+      }else{
+        return null;
+      }
     } else {
       return null;
     }
@@ -45,10 +49,10 @@ class doc {
   }
 
   function getFileTypeSymbol($type) {
-    if (eregi("jpg", $type)) {
+    if (preg_match("/jpg/i", $type)) {
       $pic = 'img/jpg.png';
     }
-    if (eregi("pdf", $type)) {
+    if (preg_match("/pdf/i", $type)) {
       $pic = 'img/pdf.png';
     }
     return "<img src='" . $pic . "' border=0>&nbsp;";
@@ -375,7 +379,8 @@ class doc {
         while (($file = readdir($dh)) !== false) {
           if ($file != ".." && $file != ".") {
             if (!empty($include)) {
-              if (eregi($include, $file)) {
+              //if (eregi($include, $file)) {
+              if (preg_match("/$include/i", $file)) {
                 return true;
               } else {
                 return false;
@@ -523,29 +528,53 @@ class doc {
 
   function find_dir($path=null, $pattern=null, &$value) {
     global $g_content;
+    if (isset($_SESSION['site'][$pattern])) {
+      $value = $_SESSION['site'][$pattern];
+    } else {
+      if (is_null($path)) {
+        $path = $g_content;
+      }
+      $dh = opendir($path);
+      while (($file = readdir($dh)) !== false) {
+        $fullname = $path . "/" . $file;
+        $site = preg_replace("/\//", "", $pattern);
+        if (is_dir($fullname) && preg_match($pattern, $fullname)) {
+          $value = $fullname;
+        }
+        if (is_dir($fullname) && $file != ".." && $file != ".") {
+          $_SESSION['site'][$file] = "$fullname";
+        }
+      }
+      closedir($dh);
+    }
+  }
+
+  function myrscandir($path=null) {
+    global $g_content;
     if (is_null($path)) {
       $path = $g_content;
     }
     $dh = opendir($path);
     while (($file = readdir($dh)) !== false) {
       $fullname = $path . "/" . $file;
-      if (is_dir($fullname) && preg_match($pattern, $fullname)) {
-        $value = $fullname;
-      }
       if (is_dir($fullname) && $file != ".." && $file != ".") {
-        $this->find_dir($fullname, $pattern, $value);
+        $_SESSION['site'][$file] = "$fullname";
+        $this->myrscandir($fullname);
       }
     }
     closedir($dh);
   }
 
   function getContentFromInfoFile($site) {
-    global $g_info_file;
+    global $g_info_file, $g_debug,$_SESSION;
     $this->saveContent();
-    //$start = date("U");
-    $this->find_dir($this->content, "/\/$site$/", $dir);
-    //$diff = date("U") - $start;
-    //echo "TIME TO RUN find_dir: ".$diff;
+    if (!isset($_SESSION['site'][$site])) {
+      //$this->find_dir($this->content, $site, $dir);
+      $this->myrscandir($this->content);
+      $dir = $_SESSION['site'][$site];
+    } else {
+      $dir = $_SESSION['site'][$site];
+    }
     $file = "$dir/$g_info_file";
     if (empty($dir)) {
       $this->createDirViaWeb($this->content . "/" . $site);
@@ -567,8 +596,16 @@ class doc {
       $this->path = $dir;
       $infoParsing = new InfoParsing($this);
       $infoParsing->setBaseDir($dir);
+      if ($g_debug) {
+        $start = microtime();
+      }
       foreach ($file_arr as $line) {
         echo $infoParsing->parse($line);
+      }
+      if ($g_debug) {
+        $end = microtime();
+        $diff = $end - $start;
+        echo "TIMETORUN for parsing: " . $diff . "<br />";
       }
       fclose($fh);
       echo "</span>";
@@ -756,8 +793,8 @@ class doc {
     }
   }
 
-  public function listReferenceObject($dir) {
-    global $g_info_file,$g_picture_width_referenceobject;
+  public function listReferenceObject($dir, $nrOfMaxObject=null) {
+    global $g_info_file, $g_picture_width_referenceobject;
     $this->path = $dir;
     if ($this->docAvailable()) {
       $text = $this->getFileContent($dir . "/" . $g_info_file);
@@ -765,16 +802,16 @@ class doc {
       echo "<tr>";
       echo "<td widht='400' nowrap>";
       $aText = preg_split("/\\\r|\\\n|\\\r\\\n/", $text);
-      echo "<table class='main'>";
+      echo "<table class='main' border='1'>";
       foreach ($aText as $v) {
         list($var, $val) = preg_split("/:|=|;/", $v);
-        echo "<tr valign='top' nowrap><td width='200'><b>".trim($var)."</b></td><td>:</td>\n";
-        echo "<td width='200' nowrap>".trim($val)."</td></tr>\n";
+        echo "<tr valign='top' nowrap><td width='200'><b>" . trim($var) . "</b></td><td>:</td>\n";
+        echo "<td width='200' nowrap>" . trim($val) . "</td></tr>\n";
       }
       echo "</table>";
       echo "</td>";
       echo "<td width='400' valign='middle'>";
-      $this->listPicture(2,$g_picture_width_referenceobject);
+      $this->listPicture(4, 50);
       echo "</td>";
       echo "</tr>";
       echo "</table>\n";
@@ -783,7 +820,7 @@ class doc {
 
   function listPicture($nrOfColumn, $picturewidth) {
     global $g_picture_to_show, $g_nr_of_picture_per_line, $g_picture_width,
-    $g_table_content_width, $g_lytebox;
+    $g_table_content_width, $g_lytebox, $g_debug;
     if (is_null($nrOfColumn)) {
       $nrOfColumn = $g_nr_of_picture_per_line;
     }
@@ -804,6 +841,7 @@ class doc {
           } else {
             echo "<td width='$width'>\n";
           }
+
           /*
            * show the thumbnail pictures
            */
@@ -811,19 +849,19 @@ class doc {
           if (is_file($this->path . "/" . $file_arr[$aKey[$i]])) {
             $linkname = $this->formatLinkName($file_arr[$aKey[$i]], true, true, "etkag_", null, false, true);
             $pic = $this->path . "/" . $file_arr[$aKey[$i]];
+            if ($g_debug) {
+              $size = " (" . sprintf("%d", filesize($pic) / 1024 / 1024) . " MBytes)";
+            } else {
+              $size = "";
+            }
             echo "<a class='main' " .
             "href='" . $pic . "' " .
-//"href='#'".
-//"onclick='milkbox.openWithFile({ href:\"" . $pic . "\", title:\"$linkname\"}, {overlayOpacity:1, fileboxBorderWidth:'10px', fileboxBorderColor:'#ff0000', resizeDuration:1, resizeTransition:'bounce:out', centered:true})" .
             "title='$linkname' " .
-//"rel='lytebox[group]'" .
-//"rel='example3'" .
-//"rel='quickbox'" .
             "$g_lytebox " .
             ">" .
-            "<img class='etkag' border='0' src='" . $this->path . "/" . $file_arr[$aKey[$i]] . "' width='$picturewidth' alt='" . $file_arr[$aKey[$i]] . "' /></a>\n";
+            "<img class='etkag' border='0' src='" . $pic . "' width='$picturewidth' alt='" . $file_arr[$aKey[$i]] . "' /></a>\n";
             echo "<br />\n";
-            echo "<span class='pictext_left'>" . ucfirst($linkname) . "</span>\n";
+            echo "<span class='pictext_left'>" . ucfirst($linkname) . $size . "test</span>\n";
           }
           if ($rest == 3) {
             echo "</td></tr>\n";

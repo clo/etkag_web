@@ -1,10 +1,9 @@
 <?PHP
-include("header.php");
-
-$myDoc = new doc();
-$pattern = "/\/" . $_GET['site'] . "$/";
-$myDoc->find_dir($g_content, $pattern, $dir);
-unset($myDoc);
+//$myDoc = new doc();
+//$pattern = "/\/" . $_GET['site'] . "$/";
+//$myDoc->find_dir($g_content, $pattern, $dir);
+//unset($myDoc);
+$dir = $_SESSION['site'][$_GET['site']];
 $myDoc = new doc($dir);
 $myDoc->saveContent();
 ?>
@@ -33,5 +32,4 @@ if (!isset($_GET['dir'])) {
 
 <?PHP
 unset($myDoc);
-include("footer.php");
 ?>

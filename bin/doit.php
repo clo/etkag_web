@@ -1,17 +1,25 @@
 <?PHP
+
 error_reporting(E_ALL);
 
 /*
  * parameters
  */
 $localInstaPath = "Z:\\LOC\\kjoff";
-$aBase = array (
-  $localInstaPath."\\etkag2\\doc\\hauptseite\\aktuell\\anlaesse",
-  $localInstaPath."\\etkag2\\doc\\hauptseite\\aktuell\\news",
-  $localInstaPath."\\etkag2\\doc\\hauptseite\\aktuell\\motto",
-  $localInstaPath."\\etkag2\\doc\\hauptseite\\aktuell\\news",
-  $localInstaPath."\\etkag2\\doc\\hauptseite\\qualitaetssicherung\schulung"
+$aBase = array(
+    //$localInstaPath."\\etkag2\\doc\\hauptseite",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\aktuell\\anlaesse",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\produkte",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\produkte",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\aktuell\\anlaesse",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\aktuell\\news",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\aktuell\\jahresmotto",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\aktuell\\news",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\qualitaetssicherung\\schulung",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\ueberuns",
+    $localInstaPath . "\\etkag2\\doc\\hauptseite\\ueberuns\\geschichte"
 );
+$filetype = ".jpg$|.tiff$|.tif$|.bmp$|.gif$";
 $convertprog = "Z:\\LOC\\Program Files\\xnview\\XnView\\nconvert.exe";
 
 /*
@@ -19,9 +27,9 @@ $convertprog = "Z:\\LOC\\Program Files\\xnview\\XnView\\nconvert.exe";
  */
 $exit = 0;
 foreach ($aBase as $base) {
-  if (!is_dir($base)){
+  if (!is_dir($base)) {
     echo "WARNUNG: Dieses Verzeichnis existiert nicht: $base\n";
-    $exit=1;
+    $exit = 1;
     continue;
   }
   echo $base . "\n";
@@ -31,7 +39,8 @@ foreach ($aBase as $base) {
       $ndir = $base . '\\' . $dir;
       $ndh = opendir($ndir);
       while (($file = readdir($ndh)) !== false) {
-        if (preg_match("/.jpg$|.JPG$/", $file) && !preg_match("/^etkag_/", $file)) {
+        if (preg_match("/$filetype/i", $file) && !preg_match("/^etkag_/", $file)) {
+          $error = "";
           $size = filesize($ndir . '\\' . $file);
           if ($size > 10000) {
             $nfile = $ndir . "\\" . $file;
@@ -42,15 +51,19 @@ foreach ($aBase as $base) {
                     //"-text_pos 10 -10 -text_flag bottom-left -text_color 255 255 255 -text_font arial 50 -text \"ETK Elektrotableau Kalbermatter AG\" " .
                     "-o \"$ofile\" " .
                     "-quiet " .
-                    "-out jpeg " .
+                    "-out jpeg ".
+                    "-q 50  " .
                     "-ratio " .
                     "-resize 600 0 " .
                     "-D " .
                     "\"$nfile\"";
-            //echo $cmd."\n";
-            $ret = shell_exec($cmd);
-            print_r($ret);
-            echo ".. done\n";
+            echo $cmd . "\n";
+            $error = shell_exec($cmd);
+            if ($error == "") {
+              echo ".. done\n";
+            } else {
+              echo ".. failed [ERROR: $error]\n";
+            }
           }
         }
       }

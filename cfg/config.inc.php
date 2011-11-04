@@ -57,6 +57,7 @@ $google_picasa_log = "log/google_picasa.log";
 $google_picasa_user = 'etkag00@gmail.com';
 $google_picasa_pass = 'etkag-SRV';
 
+$g_debug = false;
 $g_error_reporting = E_ALL & !E_NOTICE;
 //$g_error_reporting = E_ALL;
 
@@ -70,7 +71,7 @@ $g_backup_info_file_after_edit = true;
 $g_right_picture_pattern_type = ".JPG$|.jpg$";
 $g_right_doc_pattern_type = ".PDF$|.pdf$";
 $g_max_right_picture_width = 250;
-$g_content_right_with_t4 = "motto;3|news;3|anlaesse;3";
+$g_content_right_with_t4 = "news;5|anlaesse;5|jahresmotto;3";
 $g_picture_width = 150;
 $g_picture_width_referenceobject = 200;
 $g_nr_of_picture_per_line = 4;
@@ -81,6 +82,13 @@ $g_wiki_help = $g_path_cfg . "/wikihelp.txt";
 
 $g_configs_to_modify[] = $g_path_cfg . "/config.inc.php";
 $g_default_template = 2; //1-4, 2 means no content on the right hand site
+
+
+//admin link
+$g_admin="<a href='index.php?site=login'>Admin</a>";
+if (isset($_SESSION['loggedin'])) {
+  $g_admin .= "&nbsp;(" . $_SESSION['username'] . ")";
+}
 
 //RSS
 //$g_feeds[] = "news";

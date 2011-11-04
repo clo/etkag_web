@@ -17,7 +17,8 @@ echo "<h3 class='contenttitle'>" . ucfirst($_GET['site']) . "</h3>";
  */
 $myDoc = new doc();
 if (preg_match("/^[0-9]{8}.*/",$_GET['dir'])) {
-  $myDoc->find_dir($g_content, "/\/" . $_GET['dir'] . "$/", $basedir);
+  //$myDoc->find_dir($g_content, "/\/" . $_GET['dir'] . "$/", $basedir);
+  $basedir = $_SESSION['site'][$_GET['site']];
   $file = $basedir . "/" . $_GET['file'];
 } else {
   $basedir = $_GET['dir'];

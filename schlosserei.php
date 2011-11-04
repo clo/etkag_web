@@ -1,9 +1,9 @@
 <?PHP
-include("header.php");
 $pattern = "/".$_GET[site]."$/";
 $myDoc = new doc();
 //$myDoc->getContentFromInfoFile($pattern);
-$myDoc->find_dir($g_content, $pattern, $base);
+//$myDoc->find_dir($g_content, $pattern, $base);
+$base = $_SESSION['site'][$_GET['site']];
 unset($myDoc);
 
 $myDoc = new doc($base);

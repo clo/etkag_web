@@ -17,7 +17,9 @@ if (!isset($_GET['channel'])) {
   }
 }
 $myDoc = new doc();
-$myDoc->find_dir($g_content, "/\/$channel$/", $dir);
+//$myDoc->find_dir($g_content, "/\/$channel$/", $dir);
+$dir = $_SESSION['site'][$channel];
+
 $myDoc->path = $dir;
 $dir_arr = $myDoc->getFolders(null, false);
 $dir_arr = $myDoc->sortArr($dir_arr);

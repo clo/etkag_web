@@ -1,13 +1,21 @@
 <?PHP
-if (!session_id()) {
+//if (!session_id()) {
   session_start();
-}
+//echo "<pre>";
+//print_r($_SESSION);
+//echo "</pre>";
+//}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 
   <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /-->
+    <link href="css/etkag.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/etkag.js"></script>
+
     <!-- RSS autodiscovery -->
     <link rel="alternate" type="application/rss+xml" title="RSS News"
           href="http://localhost/etkag/rss.php?channel=news" />
@@ -17,7 +25,7 @@ if (!session_id()) {
           href="http://localhost/etkag/rss.php?channel=motto" />
 
     <!-- Google Analytics -->
-    <script type="text/javascript">
+    <!--script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-23989566-1']);
@@ -29,7 +37,7 @@ if (!session_id()) {
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script>
+    </script-->
 
     <?PHP
     set_include_path("lib;" . get_include_path());
@@ -39,6 +47,7 @@ if (!session_id()) {
     include_once ("./lib/class.singleton.php");
     include_once ("./lib/class.session.php");
     error_reporting($g_error_reporting);
+    if ($g_debug) { echo "SESSIONID: ".session_id(); }
 
     /*
      * session handling
@@ -57,11 +66,6 @@ if (!session_id()) {
     }
     ?>
     <title><?PHP echo $pagetitle ?></title>
-
-    <!--meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/etkag.css" media="screen" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="js/etkag.js"></script>
 
     <!-- used for lytebox -->
     <!--script type="text/javascript" src="lib/lytebox/lytebox.js"></script>
@@ -82,13 +86,13 @@ if (!session_id()) {
     
     <link rel="stylesheet" href="lib/mediabox/css/mediaboxAdvBlack21.css" type="text/css" media="screen" />
     <script src="lib/mediabox/js/mootools-1.2.5-core-nc.js" type="text/javascript"></script>
-    <!--script src="lib/mediabox/js/quickie.js" type="text/javascript"></script-->
     <script src="lib/mediabox/js/mediaboxAdv-1.3.4b.js" type="text/javascript"></script>
 
     <!--
       Metadata
     -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /-->
     <meta name="description" content="ETK AG Elektro-Tableau Kalbermatter AG Schaltanlagen und Automation Naters" />
     <meta name="keywords" content="ETK AG Elekrto-Tableau Kalbermatter AG Schaltanlagen Automation Elektro Kasten Naters Automation Geb&auml;udeautomation Brennstempel Energieverteilung Hausverteilung Verteilung Haustechnik Industrie Strassentunnel Spezialanlagen Baufirma Musterdisposition Elektrobrennstempel Wallis Schweiz" />
 
@@ -101,4 +105,9 @@ if (!session_id()) {
     include_once ("./lib/class.lastmod.php");
     include_once ("./lib/class.InfoParsing.php");
     include_once ("./lib/class.doc.php");
+    if (!isset($_SESSION['site'][$_GET['site']])){
+      $myDoc = new doc();
+      $myDoc->myrscandir($g_content);
+    }
+
     ?>

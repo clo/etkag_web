@@ -1,6 +1,7 @@
 <?PHP
-$myDoc = new doc();
+if (!isset($myDoc)){
+  $myDoc = new doc();
+}
 $myDoc->getContentFromInfoFile($_GET['site']);
-//TODO: insert motto
 unset($myDoc);
 ?>

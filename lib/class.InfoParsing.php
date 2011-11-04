@@ -45,7 +45,7 @@ class InfoParsing {
 
   private function doHeaderParsing() {
     if ($this->_title) {
-      $this->line = "<h3 class='contenttitle'>$this->line</h3>\n";
+      $this->line = "<h3 class='contenttitle'>".$this->line."</h3>\n";
       $this->_title = false;
     }
     preg_match_all("/(=.*?=)/", $this->line, $matches);
@@ -179,7 +179,7 @@ class InfoParsing {
         $sitedescription = $link;
       }
       $pos = menu::getPositionBySite($site);
-      $newlink = "<a href='index.php?site=$site&pos=$pos&level=' class='main'>" . ucfirst($this->doc->insertUmlaut($sitedescription)) . "</a>\n";
+      $newlink = "<a href='index.php?site=$site&amp;pos=$pos&amp;level=' class='main'>" . ucfirst($this->doc->insertUmlaut($sitedescription)) . "</a>\n";
       $this->line = str_replace($origlink, $newlink, $this->line);
     }
   }
