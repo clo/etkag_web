@@ -30,9 +30,9 @@ class doc {
   function getDate($dir, $format='d.m.Y') {
     if (!empty($dir) && !is_null($dir)) {
       preg_match('/^([0-9]{6})(.*)$/i', $dir, $target);
-      if (isset($target[0])){
+      if (isset($target[0])) {
         return date($format, mktime(0, 0, 0, substr($target[0], 2, 2), substr($target[0], 0, 2), substr($target[0], 4, 4)));
-      }else{
+      } else {
         return null;
       }
     } else {
@@ -64,7 +64,7 @@ class doc {
   }
 
   function getFolders($dir=null, $sort=true) {
-    if (empty($dir)) {
+    if (empty($dir) || is_null($dir)) {
       $dir = $this->path;
     }
     if ($this->debug) {
@@ -97,8 +97,8 @@ class doc {
       exit();
     }
     if ($sort) {
-//krsort($dir_arr);
-      $dir_arr = $this->sortArr($dir_arr);
+      krsort($dir_arr);
+      //$dir_arr = $this->sortArr($dir_arr);
     }
     return $dir_arr;
   }
@@ -447,9 +447,12 @@ class doc {
   }
 
   function insertUmlaut($link) {
+    //Frauen -> Fräün
+
     $link = str_replace("ae", "&auml;", $link);
     $link = str_replace("h&auml;", "hae", $link);
     $link = str_replace("ue", "&uuml;", $link);
+    $link = str_replace("Ue", "&Uuml;", $link);
     $link = str_replace("e&uuml;", "eue", $link);
     $link = str_replace("oe", "&ouml;", $link);
     $link = str_replace("t&uuml;ll", "tuell", $link);
@@ -537,19 +540,20 @@ class doc {
       $dh = opendir($path);
       while (($file = readdir($dh)) !== false) {
         $fullname = $path . "/" . $file;
-        $site = preg_replace("/\//", "", $pattern);
+        //$site = preg_replace("/\//", "", $pattern);
         if (is_dir($fullname) && preg_match($pattern, $fullname)) {
           $value = $fullname;
         }
         if (is_dir($fullname) && $file != ".." && $file != ".") {
           $_SESSION['site'][$file] = "$fullname";
+          $this->find_dir($fullname, $pattern, $value);
         }
       }
       closedir($dh);
     }
   }
 
-  function myrscandir($path=null) {
+  function myrscandir($path=null,&$val=null) {
     global $g_content;
     if (is_null($path)) {
       $path = $g_content;
@@ -559,33 +563,35 @@ class doc {
       $fullname = $path . "/" . $file;
       if (is_dir($fullname) && $file != ".." && $file != ".") {
         $_SESSION['site'][$file] = "$fullname";
-        $this->myrscandir($fullname);
+        if (!is_null($val)){
+          $val[$file]="$fullname";
+        }
+        $this->myrscandir($fullname,$val);
       }
     }
     closedir($dh);
   }
 
   function getContentFromInfoFile($site) {
-    global $g_info_file, $g_debug,$_SESSION;
+    global $g_info_file, $g_debug, $_SESSION;
     $this->saveContent();
     if (!isset($_SESSION['site'][$site])) {
-      //$this->find_dir($this->content, $site, $dir);
       $this->myrscandir($this->content);
       $dir = $_SESSION['site'][$site];
     } else {
       $dir = $_SESSION['site'][$site];
     }
     $file = "$dir/$g_info_file";
-    if (empty($dir)) {
-      $this->createDirViaWeb($this->content . "/" . $site);
-    }
+    //if (empty($dir)) {
+    //  $this->createDirViaWeb($this->content . "/" . $site);
+    //}
     if (empty($dir) && $_SESSION['loggedin']) {
-      echo "WARNUNG: Verzeichnis $site existiert niergends unter $this->content.<br />\n";
-      echo "<a class='main' href='index.php?site=" . $_GET['site'] . "&amp;action=create&amp;dir=$site'>Verzeichnis erstellen</a><br />\n";
+      echo "WARNUNG: Verzeichnis $dir existiert niergends unter $this->content.<br />\n";
+      //echo "<a class='main' href='index.php?site=" . $_GET['site'] . "&amp;action=create&amp;dir=$site'>Verzeichnis erstellen</a><br />\n";
     }
-    if (!is_file($file)) {
-      $this->createFileFromWeb("/htdocs/2011", $dir, $file);
-    }
+    //if (!is_file($file)) {
+    //  $this->createFileFromWeb("/htdocs/2011", $dir, $file);
+    //}
     if (is_file($file)) {
       $this->printEditButtonNew($dir, $g_info_file, $_GET['site']);
       $fh = fopen($file, "r");
@@ -761,26 +767,33 @@ class doc {
   }
 
   function printEditButtonNew($dir, $file, $site) {
+    global $g_editbutton;
     if (isset($_SESSION['loggedin'])) {
       if ($_SESSION['loggedin']) {
         $pos = menu::getPositionBySite($site);
-        echo "<div align='left'><a class='main' href='index.php?site=edit_new&amp;file=$file&amp;dir=$dir&amp;pos=$pos&amp;sitefrom=$site'>Anpassen</a></div>\n";
+        echo "<div align='left'><a class='main' href='index.php?site=edit_new&amp;file=$file&amp;dir=$dir&amp;pos=$pos&amp;sitefrom=$site'>$g_editbutton</a></div>\n";
       }
     }
   }
 
-  public function listDocument() {
+  public function listDocument($limit=null) {
     global $g_document_to_show;
+    if (!is_null($limit)){
+      
+    }
     $file_arr = $this->getFiles(null, $g_document_to_show);
     if (!empty($file_arr)) {
       foreach ($file_arr as $key => $file) {
         if (preg_match("/php$/", $file)) {
           include($base . "/" . $_GET['dir'] . "/" . $file);
         } else {
+          $show = true;
+          if (!is_null($limit) && $i > $limit ) {
+            $show = false;
+          }
           $linkname = $this->formatLinkName($file, false, true, "", "", false, true);
           $pic = $this->getFileTypeSymbol($this->getFileType($file));
-          echo "$pic&nbsp;
-    <a class=main href='" . $this->path . "/" . $file . "' onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\" target='_new'>$linkname</a><br />";
+          echo "$pic&nbsp;<a class=main href='" . $this->path . "/" . $file . "' onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\" target='_new'>$linkname</a><br />";
         }
       }
     }
@@ -793,34 +806,114 @@ class doc {
     }
   }
 
-  public function listReferenceObject($dir, $nrOfMaxObject=null) {
-    global $g_info_file, $g_picture_width_referenceobject;
+  public function listReferenceObjectNEW($dir, $nrOfMaxObject=null) {
+    global $g_info_file, $g_picture_width_referenceobject, $g_morebutton;
     $this->path = $dir;
     if ($this->docAvailable()) {
       $text = $this->getFileContent($dir . "/" . $g_info_file);
+      //echo "FILE: ".$dir ."/".$g_info_file;
+      $aText = preg_split("/\\\r|\\\n|\\\r\\\n/", $text);
+      foreach ($aText as $v) {
+        list($var, $val) = preg_split("/:|=|;/", $v);
+        if (preg_match("/objekt/i", $var)) {
+          echo "<h3 class='contenttitle'>$v</h3>";
+        }
+      }
       echo "<table class='main' width='800'>\n";
       echo "<tr>";
       echo "<td widht='400' nowrap>";
-      $aText = preg_split("/\\\r|\\\n|\\\r\\\n/", $text);
-      echo "<table class='main' border='1'>";
+      echo "<table colspan='0' cellspacing='0' class='main' border='0'><tr valign='top' nowrap><td width='200'>";
+      //$title = true;
       foreach ($aText as $v) {
         list($var, $val) = preg_split("/:|=|;/", $v);
-        echo "<tr valign='top' nowrap><td width='200'><b>" . trim($var) . "</b></td><td>:</td>\n";
-        echo "<td width='200' nowrap>" . trim($val) . "</td></tr>\n";
+        //if ($title){
+        //  echo "<h3 class='main'>$val</h3>";
+        //  $title = false;
+        //}
+        //echo "<b>" . trim($var) . "</b>:";
+        //echo trim($val) . "<br />\n";
+        printf("<b>%-30s</b>:%s<br />\n", trim($var), trim($val));
       }
-      echo "</table>";
+      echo "</td></tr width='100%'></table>";
+
       echo "</td>";
       echo "<td width='400' valign='middle'>";
-      $this->listPicture(4, 50);
+      $this->listPicture(4, 200, true, $nrOfMaxObject);
       echo "</td>";
       echo "</tr>";
       echo "</table>\n";
+      echo "<a href='index.php?site=referenzobjektdetail&dir=$dir'>$g_morebutton</a>\n";
+      echo "<hr>";
     }
   }
 
-  function listPicture($nrOfColumn, $picturewidth) {
+  public function listReferenceObject($dir, $nrOfMaxObject=null) {
+    global $g_info_file, $g_picture_width_referenceobject, $g_morebutton;
+    $this->path = $dir;
+    if ($this->docAvailable()) {
+      $text = $this->getFileContent($dir . "/" . $g_info_file);
+      $aText = preg_split("/\\\r|\\\n|\\\r\\\n|##/", $text);
+      foreach ($aText as $v) {
+        list($var, $val) = preg_split("/:|=|;/", $v);
+        if (preg_match("/objekt/i", $var)) {
+          echo "<h3 class='contenttitle'>".str_replace("##","",$v)."</h3>";
+        }
+      }
+      echo "<table class='main' width='800' style='border-bottom: 1px solid #76273C'>\n";
+      echo "<tr>";
+      echo "<td width='600' nowrap>";
+      echo "<table colspan='0' cellspacing='0' class='main' border='0'><tr valign='top' nowrap><td width='400'>";
+      $i = 0;
+      foreach ($aText as $v) {
+        $i++;
+        if (!preg_match("/objekt/i", $v)) {
+          list($var, $val) = preg_split("/:|=|;/", $v);
+          printf("<b>%-30s</b>&nbsp;:&nbsp;%s<br />\n", trim($var), trim($val));
+        }
+        if (count($aText) == $i ){
+          echo "<br /><a href='index.php?site=referenzobjektdetail&dir=$dir'>$g_morebutton</a>\n";
+        }
+      }
+      echo "</td></tr></table>";
+
+      echo "</td>";
+      echo "<td width='200' valign='middle'>";
+      $this->listPicture(4, 200, true, $nrOfMaxObject);
+      echo "</td>";
+      echo "</tr>";
+      echo "</table><br />\n";
+    }
+  }
+
+  public function listReferenceObjectDetail($dir) {
+    global $g_info_file, $g_picture_width_referenceobject, $g_backbutton;
+    $this->path = $dir;
+    if ($this->docAvailable()) {
+      $text = $this->getFileContent($dir . "/" . $g_info_file);
+      $aText = preg_split("/\\\r|\\\n|\\\r\\\n|##/", $text);
+      $title = true;
+      foreach ($aText as $v) {
+        list($var, $val) = preg_split("/:|=|;/", $v);
+        if (preg_match("/objekt/i",$var)) {
+          echo "<h3 class='contenttitle'>".str_replace("##","",$val)."</h3><br /><br /><br />";
+        }else{
+          printf("<b>%-30s</b>:%s<br />\n", trim($var), trim($val));
+        }
+      }
+      echo "<br />";
+      $this->listDocument();
+      echo "<br />";
+      $this->listPicture(4, 200, false, 10);
+    }
+    echo "<br /><a class='main' href='javascript:history.back(-1);'>$g_backbutton</a>\n";
+  }
+
+  function listPicture($nrOfColumn, $picturewidth, $notitle=false, $limit=null, $title="", $showDownloadLink=true) {
     global $g_picture_to_show, $g_nr_of_picture_per_line, $g_picture_width,
-    $g_table_content_width, $g_lytebox, $g_debug;
+    $g_table_content_width, $g_lytebox, $g_debug, $g_downloadbutton;
+    if (is_null($limit)) {
+      $limit = 0;
+    }
     if (is_null($nrOfColumn)) {
       $nrOfColumn = $g_nr_of_picture_per_line;
     }
@@ -834,52 +927,69 @@ class doc {
       $width = $g_table_content_width / $nrOfColumn;
       $aKey = array_keys($file_arr);
       for ($i = 0; $i <= count($aKey); $i++) {
-        $rest = $i % $nrOfColumn;
-        if (isset($file_arr[$aKey[$i]])) {
-          if ($rest == 0) {
-            echo "<tr><td width='$width'>\n";
-          } else {
-            echo "<td width='$width'>\n";
-          }
-
-          /*
-           * show the thumbnail pictures
-           */
-
-          if (is_file($this->path . "/" . $file_arr[$aKey[$i]])) {
-            $linkname = $this->formatLinkName($file_arr[$aKey[$i]], true, true, "etkag_", null, false, true);
-            $pic = $this->path . "/" . $file_arr[$aKey[$i]];
-            if ($g_debug) {
-              $size = " (" . sprintf("%d", filesize($pic) / 1024 / 1024) . " MBytes)";
+        if ($limit == 0 || $i < $limit) {
+          $rest = $i % $nrOfColumn;
+          if (isset($file_arr[$aKey[$i]])) {
+            if ($rest == 0) {
+              echo "<tr><td width='$width'>\n";
             } else {
-              $size = "";
+              echo "<td width='$width'>\n";
             }
-            echo "<a class='main' " .
-            "href='" . $pic . "' " .
-            "title='$linkname' " .
-            "$g_lytebox " .
-            ">" .
-            "<img class='etkag' border='0' src='" . $pic . "' width='$picturewidth' alt='" . $file_arr[$aKey[$i]] . "' /></a>\n";
-            echo "<br />\n";
-            echo "<span class='pictext_left'>" . ucfirst($linkname) . $size . "test</span>\n";
-          }
-          if ($rest == 3) {
-            echo "</td></tr>\n";
-          } else {
-            echo "</td>";
+
+            /*
+             * show the thumbnail pictures
+             */
+
+            if (is_file($this->path . "/" . $file_arr[$aKey[$i]])) {
+              if (empty($title)) {
+                $linkname = $this->formatLinkName($file_arr[$aKey[$i]], true, true, "etkag_", null, false, true);
+              } else {
+                $linkname = $title;
+              }
+              $pic = $this->path . "/" . $file_arr[$aKey[$i]];
+              if ($g_debug) {
+                $size = " (" . sprintf("%d", filesize($pic) / 1024) . " KBytes)";
+              } else {
+                $size = "";
+              }
+              if ($showDownloadLink) {
+                $download = "&nbsp;<a href='$pic' border='0'>$g_downloadbutton</a>";
+              } else {
+                $download = "";
+              }
+              echo "<a class='main' " .
+              "href='" . $pic . "' " .
+              "title='$linkname' " .
+              "$g_lytebox " .
+              ">" .
+              "<img class='etkag' border='0' src='" . $pic . "' width='$picturewidth' alt='" . $file_arr[$aKey[$i]] . "' /></a>\n";
+              echo "<br />\n";
+              if (!$notitle) {
+                echo "<span class='pictext_left'>" . ucfirst($linkname) . $size . $download . "</span>\n";
+              }
+            }
+            if ($rest == 3) {
+              echo "</td></tr>\n";
+            } else {
+              echo "</td>";
+            }
           }
         }
-      }
+      }//for
       echo "</table>";
     }
   }
 
-  function getPicture($picture, $picturewidth) {
+  function getPicture($picture, $picturewidth, $notitle=false, $download=false, $title="") {
     global $g_picture_width, $g_lytebox;
     if (is_null($picturewidth)) {
       $picturewidth = $g_picture_width;
     }
-    $linkname = $this->formatLinkName($picture, true, true, "etkag_", null, false, true);
+    if (empty($title)) {
+      $linkname = $this->formatLinkName($picture, true, true, "etkag_", null, false, true);
+    } else {
+      $linkname = $title;
+    }
     $pic = $this->path . "/" . $picture;
     $link = "<a class='main' " .
             "href='" . $pic . "' " .
@@ -889,7 +999,9 @@ class doc {
             "<img class='etkag' border='0' src='" . $pic . "' width='$picturewidth' alt='" . $picture . "' />" .
             "</a>\n";
     $link .= "<br />\n";
-    $link .= "<span class='pictext_left'>" . ucfirst($linkname) . "</span>\n";
+    if (!$notitle) {
+      $link .= "<span class='pictext_left'>" . ucfirst($linkname) . "</span>\n";
+    }
     return $link;
   }
 
