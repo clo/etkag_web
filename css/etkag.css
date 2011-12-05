@@ -2,13 +2,14 @@ body{ position: absolute; top: 0px; background: #36121C; left: 20px;}
 
 div.top { vertical-align: middle; height: 118px; background:#76273C; border: #76273C solid 1px; font-family: Arial; font-size: 12px; margin-left:0px; font-weight: normal; width:1100px;}
 /*span.top { background:#76273C; border: #76273C solid 1px; font-family: Arial; font-size: 12px; margin-left:0px; font-weight: normal; width:224px;}*/
-div.topleft { float: left; height: 100%; width:224px; vertical-align: middle; text-align: center;}
+div.topleft { vertical-align: middle;   float: left; height: 100%; width:224px; vertical-align: middle; text-align: center;}
 div.topright { height: 100%; position: relative; text-align: right; color: white; display: inline;}
 
 div.topseparator_white { width: 1100px; background: #FFFFFF; height: 1px; border-right: #76273C 1px solid; border-left: #76273C 1px solid;}
 div.topseparator_grey { width: 1100px; background: #DDDDDD; height: 20; border-left: #76273C solid 1px; border-right: #76273C solid 1px;}
 div.topmenu { text-align: left; vertical-align: middle ; color: #FFFFFF; font-family: Arial; font-size: 14px; width: 1100px; background: #36121C; height: 20px; border-left: #76273C solid 1px; border-right: #76273C solid 1px;}
-span.pictext { font-family: Arial; font-size: 11px; margin-left:0px; color:#76273C; width: 300px;}
+span.pictext { font-family: Arial; font-size: 11px; margin-left:0px; color:#76273C; width: 300px; margin-bottom: 5px;}
+p.pictext    { font-family: Arial; font-size: 11px; margin:0px 0px 5px 0; color:#76273C; }
 div.address {padding-bottom: 5px; width: 200px; font-family: Arial; font-size: 12px; color: #FFFFFF; border-bottom: #FFFFFF solid 1px; margin-left: 5px;}
 
 div.menu { float: top; width: 224px; float: left; background: #76273C; margin: 0; padding: 0; bottom: 20px; display: block; }
@@ -20,24 +21,31 @@ div.m4 { width: 200px; font-family: Arial; margin: 0; padding: 0px; backround-co
 div.content {width: 877px; background: #FFFFFF; margin: 0 0 0 224px; display: block; border-right: #76273C 1px solid;}
 span.content { width: 500px; padding: 0px 28px 28px 28px; font-family: Arial; font-size: 12px; display: block;}
 span.contentright { width: 300px; background: #FFFFFF; border: 1px solid; float:right;}
-h3.contenttitle { font-family: Arial; font-size: 14px; font-weight: bold; color: #76273C; width: 500px; float: left; padding-bottom: 10px;}
+h3.contenttitle { font-family: Arial; font-size: 14px; font-weight: bold; color: #76273C; width: 500px; padding-bottom: 10px; float: none;}
+h3.contenttitle_100 { font-family: Arial; font-size: 14px; font-weight: bold; color: #76273C; width: 100%; float: left; padding-bottom: 10px;}
 h3.hometitle { font-family: Arial; font-size: 14px; font-weight: bold; color: #76273C; width: 400px; float: left; padding-bottom: 10px;}
 table.content { width: 800px; }
 table.contentpicture { width: 200px; }
-td.contentleft { width: 800px; }
+td.contentleft { width: 800px;}
 td.contentright { width: 300px; padding-left: 10px; padding-top: 30px; text-align: left; }
 table.contentrightinfo { width: 300px; border: 1px solid #76273C; margin: 0px; padding: 0px; }
+table.refobjekt_container { width:600px; border-bottom: 1px solid #76273C; }
+
 td.contentrightinfoheader { width: 300px; text-decoration: bold; background: #76273C; color: #FFFFFF; text-align: left;}
 
 textarea.edit { width: 800px; height: 300px; border: 1px solid #76273C;}
 
-span.main { background: #FFFFFF; display:inline; height: 100%; width: 500px; height: 100%}
+der-bspan.main { background: #FFFFFF; display:inline; height: 100%; width: 500px; height: 100%}
 div.homeleft { width: 400px; vertical-align: top; border: solid 1px; font-family: Arial; font-size: 12px; display: block;}
 div.homeright { width: 400px; vertical-align: top; border: solid 1px; font-family: Arial; font-size: 12px; display: block;}
 div.bottom {  font-family: Arial; font-size: 10px; width: 1100px; color: #FFFFFF; text-align: center; border-top: solid 1px;  }
 div.mainpane {width: 1100px; background: #76273C; border-left: #76273C solid 1px; border-right: #76273C solid 10px; border-top: #76273C solid 1px;position: relative; vertical-align: top;}
+
+div.inline { vertical-align: text-top; float:left;width:100px;height: 10px;}
+div.inline_10px { float:left;width:10px;height: 10px;}
+div.end {height:10px;white-space: normal;}
+
 p {  font-family: Arial; font-size: 12px; margin-left:0px; font-weight: normal; width: 100%;}
-p.pictext {font-family: Arial; font-size: 11px; margin-left:0px; color:#76273C; }
 p.bottom {font-family: Arial; font-size:9px; margin-left:0px; background: #DDDDDD; color:#76273C; text-align: center; vertical-align:middle; height: 20; border-bottom: solid 1px;}
 p.home {font-family: Arial; font-size:13px; margin-left:0px; color:#002740; }
 div.pictext {font-family: Arial; font-size: 11px; margin-left:0px; color:#76273C; text-align: center; width: 100px;}
@@ -54,7 +62,7 @@ li {  font-family: Arial; font-size: 12px; margin-left:5px; font-weight: normal;
 
 table { font-size:12px; border:white; background-color:white; font-family: Arial; margin-left:0px;}
 table.toplogo { background: #76273C; color: white; }
-/*table.main { background: #FF0000; height: 100%; padding: 0px; border-spacing: 0px; border-collapse: collapse;}*/
+/*table.main { background: #FF0000; height: 100px; padding: 0px; border-spacing: 0px; border-collapse: collapse;}*/
 table.topnews { font-size:8px; border:white; background-color:white; width:200px; font-family: Arial; margin-left:0px;}
 table.top { background-color: #DDDDDD; width: 800; color: #76273C; font-weight: normal; margin-left: 0px; font-size:10px;}
 table.normal { background-color: white; width: 800px; color: #002740; font-weight: none; margin-left: 0;}
@@ -231,3 +239,7 @@ img.spacer { border: none; }
  padding: 10px;
 }
 .clear { clear: both; background: none; }
+span.red { color: #FF0000; text-decoration: bold;}
+span.green { color: #00FF00; text-decoration: bold;}
+div.docshow { visibility: show; }
+div.dochide { visibility: hidden; display: none;}

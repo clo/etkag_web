@@ -18,7 +18,7 @@ echo "<h3 class='contenttitle'>" . ucfirst($_GET['site']) . "</h3>";
 $myDoc = new doc();
 if (preg_match("/^[0-9]{8}.*/",$_GET['dir'])) {
   //$myDoc->find_dir($g_content, "/\/" . $_GET['dir'] . "$/", $basedir);
-  $basedir = $_SESSION['site'][$_GET['site']];
+  $basedir = $_SESSION['site'][$_GET['dir']];
   $file = $basedir . "/" . $_GET['file'];
 } else {
   $basedir = $_GET['dir'];
@@ -26,6 +26,12 @@ if (preg_match("/^[0-9]{8}.*/",$_GET['dir'])) {
 }
 //echo $basedir."";
 echo "Datei:&nbsp;$file<br />\n";
+if (is_writable($file)){
+  $writeable = "<span class='green'>JA</span>";
+}else{
+  $writeable = "<span class='red'>NEIN</span>";
+}
+echo "Schreibar:&nbsp;".$writeable."<br />\n";
 if ($_SESSION['loggedin'] && !file_exists($file)) {
   $myDoc->createFileFromWeb("/htdocs/2011",$basedir,$file);
 }

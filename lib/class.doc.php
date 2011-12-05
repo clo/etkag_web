@@ -361,7 +361,8 @@ class doc {
     if (is_file($file)) {
       $fh = fopen($file, "r");
       $content = fread($fh, filesize($file));
-      $content = str_replace("\n", "<br>", $content);
+      //$content = str_replace("\n", "<br>", $content);
+      //$content = str_replace("\r", "", $content);
       fclose($fh);
       return $content;
     } else {
@@ -553,7 +554,7 @@ class doc {
     }
   }
 
-  function myrscandir($path=null,&$val=null) {
+  function myrscandir($path=null, &$val=null) {
     global $g_content;
     if (is_null($path)) {
       $path = $g_content;
@@ -563,10 +564,10 @@ class doc {
       $fullname = $path . "/" . $file;
       if (is_dir($fullname) && $file != ".." && $file != ".") {
         $_SESSION['site'][$file] = "$fullname";
-        if (!is_null($val)){
-          $val[$file]="$fullname";
+        if (!is_null($val)) {
+          $val[$file] = "$fullname";
         }
-        $this->myrscandir($fullname,$val);
+        $this->myrscandir($fullname, $val);
       }
     }
     closedir($dh);
@@ -777,24 +778,40 @@ class doc {
   }
 
   public function listDocument($limit=null) {
-    global $g_document_to_show;
-    if (!is_null($limit)){
+    global $g_document_to_show, $g_morebutton;
+    if (!is_null($limit)) {
       
     }
     $file_arr = $this->getFiles(null, $g_document_to_show);
     if (!empty($file_arr)) {
+      $i = 1;
+      $showMoreButton = false;
+      $showPlaceholder = true;
+      $stuff = "";
       foreach ($file_arr as $key => $file) {
         if (preg_match("/php$/", $file)) {
           include($base . "/" . $_GET['dir'] . "/" . $file);
         } else {
-          $show = true;
-          if (!is_null($limit) && $i > $limit ) {
-            $show = false;
-          }
+          $id = 'docshow';
           $linkname = $this->formatLinkName($file, false, true, "", "", false, true);
           $pic = $this->getFileTypeSymbol($this->getFileType($file));
-          echo "$pic&nbsp;<a class=main href='" . $this->path . "/" . $file . "' onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\" target='_new'>$linkname</a><br />";
+          if (!is_null($limit) && $i > $limit) {
+            $showMoreButton = true;
+            $class = 'dochide';
+            $id = 'doc'.$i;
+            $aId[] = $id;
+            echo "<div id='".$id."' class='".$class."'>$pic&nbsp;<a class='main' href='" . $this->path . "/" . $file . "' onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\" target='_new'>".$linkname."</a></div>\n";
+          }else{
+            echo "<div id='doc".$i."'>$pic&nbsp;<a class='main' href='" . $this->path . "/" . $file . "' onClick=\"javascript:window.open(this.href,'_new','menubar=no, width=800, height=600, resizable=yes');return false;\" target='_new'>".$linkname."</a><br /></div>\n";
+          }
+          $i++;
         }
+      }
+      if ($showMoreButton) {
+        $aStuff = array();
+        $ids = implode(';',$aId);
+        //more
+        echo "<br /><div class='docshow' id='more'><a href=\"javascript:showIds('".$ids."',';');hideIds('more');\">$g_morebutton</a></div>\n";
       }
     }
   }
@@ -852,25 +869,27 @@ class doc {
     $this->path = $dir;
     if ($this->docAvailable()) {
       $text = $this->getFileContent($dir . "/" . $g_info_file);
-      $aText = preg_split("/\\\r|\\\n|\\\r\\\n|##/", $text);
+      $aText = preg_split("/\\\n|\\\r\\\n|##/", $text);
       foreach ($aText as $v) {
         list($var, $val) = preg_split("/:|=|;/", $v);
         if (preg_match("/objekt/i", $var)) {
-          echo "<h3 class='contenttitle'>".str_replace("##","",$v)."</h3>";
+          echo "<h3 class='contenttitle'>" .  $v . "</h3>";
         }
       }
-      echo "<table class='main' width='800' style='border-bottom: 1px solid #76273C'>\n";
+      echo "<table class='refobjekt_container'>\n";
       echo "<tr>";
-      echo "<td width='600' nowrap>";
+      echo "<td width='400' nowrap>";
       echo "<table colspan='0' cellspacing='0' class='main' border='0'><tr valign='top' nowrap><td width='400'>";
       $i = 0;
       foreach ($aText as $v) {
         $i++;
+        list($var, $val) = preg_split("/:|=|;/", $v);
         if (!preg_match("/objekt/i", $v)) {
-          list($var, $val) = preg_split("/:|=|;/", $v);
-          printf("<b>%-30s</b>&nbsp;:&nbsp;%s<br />\n", trim($var), trim($val));
+          echo "<div class='inline'><b>".trim($var)."</b></div><div class='inline_10px'>:</div><div class='end'>".trim($val)."</div><br />\n";
+        }else if(!preg_match("/:/i", $v)){
+          echo "<div class='inline'>&nbsp;</div><div class='inline_10px'>&nbsp;</div><div class='end'>$v</end><br />\n";
         }
-        if (count($aText) == $i ){
+        if (count($aText) == $i) {
           echo "<br /><a href='index.php?site=referenzobjektdetail&dir=$dir'>$g_morebutton</a>\n";
         }
       }
@@ -886,22 +905,22 @@ class doc {
   }
 
   public function listReferenceObjectDetail($dir) {
-    global $g_info_file, $g_picture_width_referenceobject, $g_backbutton;
+    global $g_info_file, $g_picture_width_referenceobject, $g_backbutton, $g_nrOfLimitDocumentsInReferenceDetail;
     $this->path = $dir;
     if ($this->docAvailable()) {
       $text = $this->getFileContent($dir . "/" . $g_info_file);
-      $aText = preg_split("/\\\r|\\\n|\\\r\\\n|##/", $text);
-      $title = true;
+      //$aText = preg_split("/\\\r|\\\n|\\\r\\\n|##/", $text);
+      $aText = preg_split("/\\\n|\\\r\\\n|##/", $text);
       foreach ($aText as $v) {
         list($var, $val) = preg_split("/:|=|;/", $v);
-        if (preg_match("/objekt/i",$var)) {
-          echo "<h3 class='contenttitle'>".str_replace("##","",$val)."</h3><br /><br /><br />";
-        }else{
-          printf("<b>%-30s</b>:%s<br />\n", trim($var), trim($val));
+        if (preg_match("/objekt/i", $var)) {
+          echo "<h3 class='contenttitle'>" . str_replace("##", "", $val) . "</h3>";
+        } else {
+          echo "<div class='inline'><b>".trim($var)."</b></div><div class='inline_10px'>:</div><div class='end'>".trim($val)."</div><br />";
         }
       }
       echo "<br />";
-      $this->listDocument();
+      $this->listDocument($g_nrOfLimitDocumentsInReferenceDetail);
       echo "<br />";
       $this->listPicture(4, 200, false, 10);
     }

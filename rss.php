@@ -10,18 +10,15 @@ include("lib/class.menu.php");
 if (!isset($_GET['channel'])) {
   $channel = "news";
 } else {
-  if (preg_match("/news|anlaesse|motto/",$_GET['channel'])){
+  if (preg_match("/news|anlaesse|jahresmotto/",$_GET['channel'])){
     $channel = $_GET['channel'];
-  }else{
-
   }
 }
 $myDoc = new doc();
-//$myDoc->find_dir($g_content, "/\/$channel$/", $dir);
-$dir = $_SESSION['site'][$channel];
+$myDoc->find_dir($g_content, "/\/".$channel."$/", $dir);
 
 $myDoc->path = $dir;
-$dir_arr = $myDoc->getFolders(null, false);
+$dir_arr = $myDoc->getFolders($dir, false);
 $dir_arr = $myDoc->sortArr($dir_arr);
 $pos = menu::getPositionBySite($channel);
 if (!empty($dir_arr)) {

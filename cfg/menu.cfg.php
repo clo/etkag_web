@@ -7,6 +7,7 @@
 $g_topmenu[]="kontakt";
 $g_topmenu[]="angebote";
 $g_topmenu[]="downloads";
+$g_topmenu[]="links";
 $g_topmenu[]="news";
 $g_topmenu[]="anlaesse";
 
@@ -42,6 +43,10 @@ $menutree_new[110507]   = "Plan Wekrstatt|index.php?site=planwerkstatt|1|2";
 $menutree_new[115000] 	= "Geschäftsdokumentation|index.php?site=geschaeftsdokumentation|1|2";
 $menutree_new[116000]   = "Kamera|index.php?site=kamera|1|2";
 $menutree_new[117000]	= "Stellenangebote|index.php?site=stellenangebote|1|2";
+$menutree_new[118000]	= "Galerie|index.php?site=galerie|1|2";
+$menutree_new[118010]	= "Fotos|index.php?site=fotogalerie|1|2";
+$menutree_new[118020]	= "Filme|index.php?site=filmgalerie|1|2";
+
 
 
 /*
@@ -49,18 +54,18 @@ $menutree_new[117000]	= "Stellenangebote|index.php?site=stellenangebote|1|2";
  */
 $menutree_new[130000]	= "Produkte|index.php?site=produkte|1|1";
 $menutree_new[131000]	= "Schaltanlagen|index.php?site=schaltanlagen|1|2";
-$menutree_new[132005]	= "Hausverteilung|index.php?site=hausverteilung|1|1";
-$menutree_new[132010]	= "Gebäudeautomation|index.php?site=gebaeudeautomation|1|1";
-$menutree_new[132020]	= "EW Trafostation|index.php?site=ewtrafostation|1|1";
-$menutree_new[132030]	= "Industrie|index.php?site=industrie|1|1";
-$menutree_new[132040]	= "Haustechnik|index.php?site=haustechnik|1|1";
-$menutree_new[132050]	= "Sanitäranlagen|index.php?site=sanitaeranlage|1|1";
-$menutree_new[132060]	= "Strassentunnel|index.php?site=strassentunnel|1|1";
-$menutree_new[132070]	= "Baufirmen|index.php?site=baufirma|1|1";
-$menutree_new[132080]	= "Spezialanlagen|index.php?site=spezialanlage|1|1";
-$menutree_new[133000]	= "Automation|index.php?site=automation|1auto|1";
-$menutree_new[134000]	= "Ergowatt Lichtregler|index.php?site=ergowattlichtregler|1|2";
-$menutree_new[135000]	= "Elektrobrennstempel|index.php?site=elektrobrennstempel|1|1";
+$menutree_new[131005]	= "Hausverteilung|index.php?site=hausverteilung|1|2";
+$menutree_new[131010]	= "Gebäudeautomation|index.php?site=gebaeudeautomation|1|2";
+$menutree_new[131020]	= "EW Trafostation|index.php?site=ew-trafostation|1|2";
+$menutree_new[131030]	= "Industrie|index.php?site=industrie|1|2";
+$menutree_new[131040]	= "Haustechnik|index.php?site=haustechnik|1|2";
+$menutree_new[131050]	= "Sanitäranlagen|index.php?site=sanitaeranlage|1|2";
+$menutree_new[131060]	= "Strassentunnel|index.php?site=strassentunnel|1|2";
+$menutree_new[131070]	= "Baufirmen|index.php?site=baufirma|1|2";
+$menutree_new[131080]	= "Spezialanlagen|index.php?site=spezialanlage|1|2";
+$menutree_new[132000]	= "Automation|index.php?site=automation|1auto|1";
+$menutree_new[133000]	= "Ergowat Lichtregler|index.php?site=ergowatlichtregler|1|2";
+$menutree_new[134000]	= "Elektrobrennstempel|index.php?site=elektrobrennstempel|1|1";
 
 
 /*
@@ -81,7 +86,7 @@ $menutree_new[140900]	= "Kamera Werkstatt|index.php?site=kamera|2|2";
  */
 $menutree_new[150000]   = "Qualitätssicherung|index.php?site=qualitaetssicherung|1|1";
 $menutree_new[151000]   = "Interne Schulung|index.php?site=schulung|1|2";
-$menutree_new[152000]   = "Qualitaetskontrolle|index.php?site=qualitaetskontrolle|1|2";
+$menutree_new[152000]   = "Qualitätskontrolle|index.php?site=qualitaetskontrolle|1|2";
 $menutree_new[153000]   = "Fehlermeldungen|index.php?site=fehlermeldungen|1|2";
 
 

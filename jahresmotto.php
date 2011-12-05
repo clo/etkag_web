@@ -1,4 +1,6 @@
 <?PHP
+include("header.php");
+
 //$myDoc = new doc();
 //$pattern = "/\/" . $_GET['site'] . "$/";
 //$myDoc->find_dir($g_content, $pattern, $dir);
@@ -7,11 +9,16 @@ $dir = $_SESSION['site'][$_GET['site']];
 $myDoc = new doc($dir);
 $myDoc->saveContent();
 ?>
-<h3 class="contenttitle"><?PHP echo $myDoc->insertUmlaut(ucfirst($_GET['site'])); ?></h3>
+<h3 class="contenttitle"><?PHP echo ucfirst($_GET['site']); ?></h3>
 <?PHP
 if (isset($_GET['dir'])) {
+  if (isset($g_dateFormat[$_GET['site']])) {
+    $format = $g_dateFormat[$_GET['site']];
+  } else {
+    $format = null;
+  }
   echo "<h3 class='contenttitle'>";
-  echo $myDoc->getDate($_GET['dir']) . ": ";
+  echo $myDoc->getDate($_GET['dir'], $format) . ": ";
   echo $myDoc->formatLinkName($_GET['dir'], true, true);
   echo "</h3>";
 }
@@ -21,7 +28,7 @@ if (!isset($_GET['dir'])) {
 } else {
   echo "<table class='content' border=0>";
   //$myDoc->path = $dir . "/" . $_GET[dir];
-  if ($_GET['dir']) {
+  if ($_GET[dir]) {
     $myDoc->printEditButtonNew($_GET['dir'], $g_info_file, $_GET['site']);
   }
   include("list_infotext.php");
@@ -32,4 +39,5 @@ if (!isset($_GET['dir'])) {
 
 <?PHP
 unset($myDoc);
+include("footer.php");
 ?>

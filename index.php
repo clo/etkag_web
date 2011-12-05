@@ -1,7 +1,6 @@
 <?PHP
 include("header.php");
-include_once ("./cfg/config.inc.php");
-error_reporting($g_error_reporting);
+//include_once ("./cfg/config.inc.php");
 
 /*
  * include libraries
@@ -99,11 +98,16 @@ if (!isset($_GET['site'])) {
     include("ueberuns.php");
   }
 } else {
-  if (is_file($_GET['site'] . ".php")) {
-    include($_GET['site'] . '.php');
-  } else {
-    echo "<p class='error'>" . getErrMsg(1) . "</p>";
-  }
+//  if (is_file($_GET['site'] . ".php")) {
+    $file = $_GET['site'] . '.php';
+    if (is_file($file)){
+      include($_GET['site'] . '.php');
+    }else{
+      include('alternative.php');
+    }
+//  } else {
+//    echo "<p class='error'>" . getErrMsg(1) . "</p>";
+//  }
 }
 
 echo "</td>";
@@ -146,7 +150,7 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
       }else{
         $size = "";
       }
-      echo "<span class='pictext'>" . $linkname . $size . "<br /></span>";
+      echo "<p class='pictext'>" . $linkname . $size . "<br /></p>";
     }
     unset($pic);
     if ($g_debug) {
@@ -167,6 +171,7 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
   }
   /*
    * Template 4
+   * News, Anlässe und Mottos auf der Seite
    */
 } elseif (preg_match("/4/", trim(getTemplateNr($_GET['site'])))) {
   if ($g_debug) {
@@ -181,18 +186,33 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
     echo "<tr>";
     echo "<td class='contentrightinfoheader'>";
     echo $myDoc->insertUmlaut(ucfirst($value));
-    echo "&nbsp;<a href='rss.php?channel=$value'><img src='img/rss.png' border='0' alt='rss' /></a></td>\n";
+    if (isset($g_rss[$value]) && $g_rss[$value]){
+      echo "&nbsp;<a href='rss.php?channel=$value'><img src='img/rss.png' border='0' alt='rss' /></a></td>\n";
+    }
     echo "</tr>";
     echo "<tr><td>";
     //$myDoc->find_dir(null, "/\/$value$/", $dir);
     $dir = $_SESSION['site'][$value];
-    $aDir = $myDoc->getFolders($dir, true);
+    $aDir = $myDoc->getFolders($dir, false);
+    $aDir = $myDoc->sortArr($aDir);
     $i = 1;
     foreach ($aDir as $dir) {
       if ($i <= $nrOfContent) {
         $pos = menu::getPositionBySite($value);
-        echo $myDoc->getDate($dir) . ": ";
-        echo "<a class='main' href='index.php?site=$value&amp;pos=$pos&amp;level=&amp;dir=$dir'>" . $myDoc->formatLinkName($dir, true, true) . "</a>";
+        $linkname = $myDoc->formatLinkName($dir, true, true);
+        $linknameShort = substr($linkname,0,30);
+        if (strlen($linkname) > 30){
+          $linknameShort = $linknameShort . "...";
+        }
+        if (isset($g_dateFormat[$value])){
+          $format=$g_dateFormat[$value];
+        }else{
+          $format = null;
+        }
+        echo $myDoc->getDate($dir,$format) . ": ";
+        echo "<a class='main' href='index.php?site=$value&amp;pos=$pos&amp;level=&amp;dir=$dir'>" . 
+             $linknameShort .
+             "</a>";
         echo "<br />\n";
       }else{
         continue;
@@ -202,7 +222,7 @@ if (preg_match("/1|3/", trim(getTemplateNr($_GET['site'])))) {
     echo "</td></tr>";
     echo "<tr><td align='right'>";
     $pos = menu::getPositionBySite($value);
-    echo "<a class='main' href='index.php?site=$value&amp;pos=$pos&amp;level='>mehr...</a>\n";
+    echo "<a class='main' href='index.php?site=$value&amp;pos=$pos&amp;level='>$g_morebutton</a>\n";
     echo "</td></tr>";
     echo "</table>\n";
     echo "<br />";

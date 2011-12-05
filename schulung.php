@@ -25,7 +25,7 @@ if (!isset($_GET['dir'])) {
     $myDoc->printEditButtonNew($_GET['dir'], $g_info_file, $_GET['site']);
   }
   include("list_infotext.php");
-  echo "<tr><td><a class=main href='javascript:history.back(-1);'>> zur&uuml;ck <</a></td></tr>";
+  echo "<tr><td><a class=main href='javascript:history.back(-1);'>$g_backbutton</a></td></tr>";
   echo "</table>";
 }
 ?>

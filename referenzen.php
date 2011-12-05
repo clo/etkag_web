@@ -1,11 +1,6 @@
+<h3 class="contenttitle">Referenzen <?PHP echo replaceUmlaut(ucwords($_GET['dir'])); ?> </h3><br />
 <?PHP
-//include("header.php");
-?>
-<h3 class="contenttitle">Referenzen <?PHP echo replaceUmlaut(ucwords($_GET['dir'])); ?> </h3>
-<?PHP
-//$pattern="/\/".lcfirst($_GET['dir'])."$/";
 $myDoc = new doc();
-//$myDoc->find_dir($g_content,$pattern,$dir);
 $dir = $_SESSION['site'][$_GET['dir']];
 $myDoc->path=$dir."/referenzen";
 $dir_arr = $myDoc->getFolders($myDoc->path,true);
@@ -24,13 +19,13 @@ if (!empty($dir_arr)){
     }
     $info_arr = array();
     $info_arr = $myDoc->getInfoText($myDoc->path."/".$dir);
-    $foto = $myDoc->docAvailable($myDoc->path."/$dir/foto","etkag_.*jpg$");
+    $foto = $myDoc->docAvailable($myDoc->path."/$dir/foto",".*jpg$|.*JPG$");
     $doc = $myDoc->docAvailable($myDoc->path."/$dir/dokument","pdf$");
     unset($_GET['dir']);
     $param = buildParam($_GET,'start');
     echo "<tr $bgcol>";
-    echo "<td>".$myDoc->formatLinkName($dir,false,true,false)."</td>";
-    echo "<td align='left'>".$info_arr['kunde']."&nbsp;</td>";
+    echo "<td>".$myDoc->insertUmlaut($myDoc->formatLinkName($dir,false,true,false))."</td>";
+    echo "<td align='left'>".$myDoc->insertUmlaut($info_arr['kunde'])."&nbsp;</td>";
     echo "<td align='center' nowrap>".$info_arr['datum']."&nbsp;</td>";
     if ($doc){
       echo "<td align=center><a class=main href='index.php?site=dokumente&dir=".$myDoc->path."/$dir/dokument&kom=".$dir."&w=dok&param=$param' target='_top'><img src='img/pdf.png' border=0></a></td>";
@@ -44,7 +39,7 @@ if (!empty($dir_arr)){
     }
     echo "</tr>";
     if(!empty($info_arr['bemerkung'])){
-      echo "<tr $bgcol><td colspan=5 style='font-style: italic;'>&nbsp;&nbsp;".$info_arr['bemerkung']."</td></tr>";
+      echo "<tr $bgcol><td colspan=5 style='font-style: italic;'>&nbsp;&nbsp;".$myDoc->insertUmlaut($info_arr['bemerkung'])."</td></tr>";
     }
     $i++;
   }
@@ -54,7 +49,6 @@ if (!empty($dir_arr)){
   echo "</p>";
 }
 echo "</table>";
-?>
-<?PHP
-include("footer.php");
+echo "<p>&nbsp;<a class=main href='javascript:history.back(-1);'>$g_backbutton</a></p>";
+
 ?>

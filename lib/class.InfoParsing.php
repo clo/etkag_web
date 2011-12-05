@@ -28,18 +28,18 @@ class InfoParsing {
   public function parse(&$line) {
     $this->line = $line;
     $this->removeComment();
-    $this->doHeaderParsing();
-    //$this->doTableParsing();
-    $this->doDocumentParsing();
+    $this->doTableParsing();
     $this->doPictureParsing();
-    $this->doLinkParsing();
-    $this->doLinkExternParsing();
+    $this->doDocumentParsing();
     $this->doReferenceParsing();
     $this->doReferenceObjectParsing();
     $this->doBoldParsing();
     $this->doNumberingParsing();
     $this->doHtmlParsing();
     $this->doNewlineParsing();
+    $this->doHeaderParsing();
+    $this->doLinkParsing();
+    $this->doLinkExternParsing();
     return $this->line;
   }
 
@@ -48,14 +48,15 @@ class InfoParsing {
       $this->line = "<h3 class='contenttitle'>".$this->line."</h3>\n";
       $this->_title = false;
     }
-    preg_match_all("/(=.*?=)/", $this->line, $matches);
-    foreach ($matches[1] as $header) {
-      $header = trim($header);
-      $orig = $header;
-      $header = preg_replace("/^=/", "<h3 class='contenttitle'>", $orig);
-      $header = preg_replace("/=$/", "</h3>", $header);
-      $this->line = str_replace($orig, $header, $this->line);
-    }
+    //todo: repair or choose another separator
+//    preg_match_all("/(=.*?=)/", $this->line, $matches);
+//    foreach ($matches[1] as $header) {
+//      $header = trim($header);
+//      $orig = $header;
+//      $header = preg_replace("/^=/", "<h3 class='contenttitle'>", $orig);
+//      $header = preg_replace("/=$/", "</h3>", $header);
+//      $this->line = str_replace($orig, $header, $this->line);
+//    }
 
   }
 
@@ -68,7 +69,7 @@ class InfoParsing {
   }
 
   private function doPictureParsing() {
-    preg_match_all("/(#BILD:?.*?#)/", $this->line, $matches);
+    preg_match_all("/(#BILD[:]?.*?#)/", $this->line, $matches);
     foreach ($matches[1] as $link) {
       $origlink = $link;
       $link = preg_replace("/#BILD:?/", "", $link);
@@ -91,12 +92,28 @@ class InfoParsing {
       } else {
         $picture = "";
       }
+      $notitle = false;
+      preg_match("/.*;?(OHNETITEL);?.*/", $link, $m);
+      if (count($m[1]) > 0) {
+        $notitle = true;
+      }
+      $download=true;
+      preg_match("/.*;?(OHNEDOWNLOAD);?.*/", $link, $m);
+      if (count($m[1]) > 0) {
+        $download = false;
+      }
+
+      $title = "";
+      preg_match("/.*;?TITEL=(.*);?.*/", $link, $m);
+      if (count($m[1]) > 0) {
+        $title = $m[1];
+      }
       //get pictures from the current directory
       if (empty($picture)) {
-        $this->doc->listPicture($nrOfColumns, $width);
+        $this->doc->listPicture($nrOfColumns, $width, $notitle,null,$title,$download);
         $newlink = "";
       } else {
-        $newlink = $this->doc->getPicture($picture,$width);
+        $newlink = $this->doc->getPicture($picture,$width,$notitle,$download,$title);
       }
       $this->line = str_replace($origlink, $newlink, $this->line);
     }
@@ -133,7 +150,7 @@ class InfoParsing {
     if (!$this->_tableOpenTag && !$this->_tableCloseTag) {
       foreach ($matches[1] as $link) {
         $this->line = preg_replace("/(^\|)/", "<tr><td nowrap>", $this->line);
-        $this->line = "<table border='0'>" . $this->line;
+        $this->line = "<table border='0' width='100%'>" . $this->line;
         $this->_tableOpenTag = true;
       }
       $matched = true;
@@ -142,7 +159,7 @@ class InfoParsing {
     preg_match_all("/(\|(\\\\n|\\\\r\\\\n)$)/", $this->line, $matches);
     foreach ($matches[1] as $link) {
       //$this->line = preg_replace("/(\|($|\\\\n|\\\\r\\\\n))/", "</td></tr>", $this->line);
-      $this->line = preg_replace("/(\|##/", "</td></tr>", $this->line);
+      $this->line = preg_replace("/(\|/", "</td></tr>", $this->line);
       $matched = true;
     }
     //mittleres zeichen
@@ -174,12 +191,15 @@ class InfoParsing {
       $link = str_replace("#", "", $link);
       if (preg_match("/\|/", $link)) {
         list($site, $sitedescription) = explode("|", $link);
-      } else {
+      }else if (preg_match("/;/", $link)) {
+        list($site, $sitedescription) = explode(";", $link);
+      }
+      else {
         $site = $link;
         $sitedescription = $link;
       }
       $pos = menu::getPositionBySite($site);
-      $newlink = "<a href='index.php?site=$site&amp;pos=$pos&amp;level=' class='main'>" . ucfirst($this->doc->insertUmlaut($sitedescription)) . "</a>\n";
+      $newlink = "<a href='index.php?site=".$site."&amp;pos=".$pos."&amp;level=' class='main'>" . ucfirst($this->doc->insertUmlaut($sitedescription)) . "</a>\n";
       $this->line = str_replace($origlink, $newlink, $this->line);
     }
   }
@@ -196,7 +216,7 @@ class InfoParsing {
         $url = $link;
         $description = $link;
       }
-      $newlink = "<a href='http://$url' class='main'>" . ucfirst($description) . "</a>";
+      $newlink = "<a href='http://$url' class='main' target='_new'>" . ucfirst($description) . "</a>";
       $this->line = str_replace($origlink, $newlink, $this->line);
     }
   }
@@ -222,7 +242,7 @@ class InfoParsing {
       preg_match("/.*DIR=(.*)/", $link, $m);
       if (!empty($m[1])) {
         $dir = $m[1];
-        $this->doc->listReferenceObject($this->_basedir."/".$dir);
+        $this->doc->listReferenceObject($this->_basedir."/".$dir,1);
       }
       $newlink = "";
       $this->line = str_replace($origlink, $newlink, $this->line);

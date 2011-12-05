@@ -62,6 +62,7 @@ $g_error_reporting = E_ALL & !E_NOTICE;
 //$g_error_reporting = E_ALL;
 
 $g_lytebox = "rel='lightbox[set1]'";
+$g_lytebox_single = "rel='lightbox'";
 
 $g_content = "doc/hauptseite";
 $g_document_to_show = ".pdf$|.PDF$|.php$";
@@ -82,6 +83,7 @@ $g_wiki_help = $g_path_cfg . "/wikihelp.txt";
 
 $g_configs_to_modify[] = $g_path_cfg . "/config.inc.php";
 $g_default_template = 2; //1-4, 2 means no content on the right hand site
+$g_nrOfLimitDocumentsInReferenceDetail = 3; // number of documents show directly in reference details
 
 
 //admin link
@@ -90,8 +92,33 @@ if (isset($_SESSION['loggedin'])) {
   $g_admin .= "&nbsp;(" . $_SESSION['username'] . ")";
 }
 
-//RSS
-//$g_feeds[] = "news";
-//$g_feeds[] = "angebote";
-//$g_feeds[] = "motto";
+/*
+ * Following sections allows to separate the section by year (g_showYearSeparation)
+ * and shows the date in front (g_showDate)
+ */
+$g_showYearSeparation['fehlermeldungen']=false;
+$g_showYearSeparation['fotogalerie'] = false;
+$g_showDate['fehlermeldungen'] = false;
+$g_showDate['jahresmotto'] = false;
+$g_showDate['fotogalerie'] = false;
+$g_showDate['filmgalerie'] = false;
+
+$g_dateFormat['jahresmotto'] = 'Y';
+$g_dateFormat['news'] = 'd.m.Y';
+$g_dateFormat['anlaesse'] = 'd.m.Y';
+$g_dateFormat['schulung'] = 'd.m.Y';
+$g_dateFormat['qualitaetskontrolle'] = 'd.m.Y';
+$g_dateFormat['fotogalerie'] = '';
+$g_dateFormat['filmgalerie'] = '';
+
+
+$g_rss['news'] = true;
+$g_rss['anlaesse'] = true;
+$g_rss['jahresmotto'] = false;
+
+$g_backbutton = "<img width='50' class='main' src='img/back.png' border='0' title='zur&uuml;ck'>";
+$g_editbutton = "<img width='50' class='main' src='img/edit.png' border='0' title='anpassen'>";
+$g_morebutton = "<img width='50' class='main' src='img/more.png' border='0' title='mehr'>";
+$g_lessbutton = "<img width='50' class='main' src='img/less.png' border='0' title='weniger'>";
+$g_downloadbutton = "<img width='12' class='main' src='img/download.png' border='0' title='download'>";
 ?>

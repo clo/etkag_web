@@ -5,14 +5,16 @@
 //print_r($_SESSION);
 //echo "</pre>";
 //}
+//include("cfg/config.inc.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 
   <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
-    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /-->
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <!--meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" /-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="css/etkag.css" media="screen" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/etkag.js"></script>
 
@@ -22,10 +24,9 @@
     <link rel="alternate" type="application/rss+xml" title="RSS Anl&auml;sse"
           href="http://localhost/etkag/rss.php?channel=anlaesse" />
     <link rel="alternate" type="application/rss+xml" title="RSS Motto"
-          href="http://localhost/etkag/rss.php?channel=motto" />
-
+          href="http://localhost/etkag/rss.php?channel=jahresmotto" />
     <!-- Google Analytics -->
-    <!--script type="text/javascript">
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-23989566-1']);
@@ -37,7 +38,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script-->
+    </script>
 
     <?PHP
     set_include_path("lib;" . get_include_path());
@@ -91,7 +92,7 @@
     <!--
       Metadata
     -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--meta http-equiv="Content-Type" content="text/html; charset=utf-8" /-->
     <!--meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /-->
     <meta name="description" content="ETK AG Elektro-Tableau Kalbermatter AG Schaltanlagen und Automation Naters" />
     <meta name="keywords" content="ETK AG Elekrto-Tableau Kalbermatter AG Schaltanlagen Automation Elektro Kasten Naters Automation Geb&auml;udeautomation Brennstempel Energieverteilung Hausverteilung Verteilung Haustechnik Industrie Strassentunnel Spezialanlagen Baufirma Musterdisposition Elektrobrennstempel Wallis Schweiz" />
