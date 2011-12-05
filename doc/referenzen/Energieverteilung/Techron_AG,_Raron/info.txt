@@ -1,3 +1,0 @@
-kunde=Elektro Rhone AG
-datum=10.08.2005
-bemerkung=Typgeprüfte Anlage, PRISMA

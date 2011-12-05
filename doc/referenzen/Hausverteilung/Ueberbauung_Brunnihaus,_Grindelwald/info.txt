@@ -1,4 +1,0 @@
-kunde=Aeschimann AG
-datum=29.08.2006
-bemerkung=Hagermaterial, Standart Aeschimann AG
-

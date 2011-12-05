@@ -1,3 +1,0 @@
-kunde=EWBN, Brig
-datum=04.06.2006
-bemerkung=Inklusive Strassenbeleuchtung und Lüftung

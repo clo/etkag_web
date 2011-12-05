@@ -1,4 +1,0 @@
-kunde=Elektro Rhone
-datum=21.08.2006
-bemerkung=Über 60 Wohnungen
-
