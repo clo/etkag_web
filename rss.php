@@ -27,13 +27,13 @@ if (!empty($dir_arr)) {
   echo "<title>ETK AG: " . ucfirst($channel) . "</title>\n";
   echo "<description>Alle " . ucfirst($channel) . " von der Firma ETK AG</description>\n";
   echo "<language>de</language>\n";
-  echo "<link>http://www.etkag.ch/2011/rss.php</link>\n";
+  echo "<link>http://www.etkag.ch/rss.php</link>\n";
   echo "<lastBuildDate>" . date('r') . "</lastBuildDate>";
   foreach ($dir_arr as $key => $file) {
     echo "<item>\n";
     echo "<title>" . $myDoc->formatLinkName($file, true, false) . "</title>\n";
     echo "<link>\n";
-    echo "http://www.etkag.ch/2011/index.php?site=" . $channel . "&amp;pos=$pos&amp;dir=$file";
+    echo "http://www.etkag.ch/index.php?site=" . $channel . "&amp;pos=$pos&amp;dir=$file";
     echo "</link>\n";
     //echo "<pubDate>\n";
     //echo $myDoc->getDate($file, 'r');
